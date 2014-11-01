@@ -49,9 +49,9 @@
      
 * Maven
 
-** What
+** Maven
 
-*** Maven 						      :BMCOL:B_block:
+*** Maven quote 					      :BMCOL:B_block:
     :PROPERTIES:
     :BEAMER_env: 
     :BEAMER_col: 0.6
@@ -60,21 +60,70 @@
 \textit{``Apache Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information.''}
 http://apache.maven.org
 
-*** Maven 					      :BMCOL:B_ignoreheading:
+
+*** Maven logo 					      :BMCOL:B_ignoreheading:
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
 \includegraphics[width=100]{maven.png}
 
 
-** Why
+** Modularization
+
+*** Convention 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.6
+    :END:
+
+- All logic is isolated in its own module.
+- No multi-module projects, unless for WARs.
+- All modules inherit from a common, logic-less module: the parent POM.
+
+*** graph 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{graph.jpg}
+
 
 ** How
+
+*** Parent POM 						      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Declares all dependencies in one place.
+- Ensures all modules use the same versions of the dependencies.
+- Defines common configurations for maven plugins.
+- Simplifies child poms.
+- Uses Maven properties to specify the versions of in-house modules.
+
+** Versioning
+
+*** Parent POM 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.4
+    :END:
+
+- All in-house modules, share the same version: latest-SNAPSHOT
+- All local environments get always up-to-date code.
+- Versions are resolved when generating releases.
+
+*** version 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.6
+    :END:
+\includegraphics[width=200]{version.png}
+
 
 * Jenkins
 
 ** What
 
+#  # -- \usebackgroundtemplate{\includegraphics[width=\paperwidth]{book.jpg}}
 *** Jenkins 						      :BMCOL:B_block:
     :PROPERTIES:
     :BEAMER_env: 
@@ -82,6 +131,7 @@ http://apache.maven.org
     :END:
 
 \textit{``An extendable open source continuous integration server.''}
+
 http://jenkins-ci.org
 
 *** Jenkins 					      :BMCOL:B_ignoreheading:
@@ -90,14 +140,28 @@ http://jenkins-ci.org
     :END:
 \includegraphics[width=100]{jenkins.png}
 
-
-** Why
-
 ** How
 
 * Docker
 
 ** What
+
+*** Docker 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: 
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``An open platform for distributed applications for developers and sysadmins.''}
+
+http://www.docker.com
+
+*** Docker 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{docker-whale-home-logo.png}
+
 
 ** Why
 
