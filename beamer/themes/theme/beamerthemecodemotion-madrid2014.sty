@@ -1,0 +1,52 @@
+% ====================================================================
+%
+% Licensed under Apache License version 2.0. See LICENSE file.
+%
+% by Rafael Luque and Jose San Leandro.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProvidesPackage{beamerthemecodemotion-madrid2014}
+
+\RequirePackage{tikz}
+\RequirePackage{ifthen}
+\RequirePackage{lipsum}
+\RequirePackage{lmodern}
+
+%% \RequirePackage{fontspec}
+%% \defaultfontfeatures{Ligatures=TeX}
+%% \setromanfont{Georgia}
+%% \setsansfont{Tahoma}
+
+\DeclareOptionBeamer{coverbackgroundimage}{
+	\PassOptionsToPackage{coverbackgroundimage=#1}{beamerouterthemecodemotion-madrid2014}
+}
+
+\DeclareOptionBeamer{clientimage}{
+	\PassOptionsToPackage{clientimage=#1}{beamerouterthemecodemotion-madrid2014}
+}
+
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\usecolortheme{codemotion-madrid2014}
+\useinnertheme{codemotion-madrid2014}
+\useoutertheme{codemotion-madrid2014}
+\usefonttheme{codemotion-madrid2014}
+
+%% Commands and environments
+
+\def\wide#1{\hspace*{-\beamer@leftmargin}#1}
+
+\def\picBackground#1{
+  \usebackgroundtemplate{%
+    \begin{pgfpicture}{0cm}{0cm}{\the\paperwidth}{\the\paperheight}
+      \includegraphics[width=\paperwidth,height=\paperheight]{#1}
+    \end{pgfpicture}
+  }
+}
+
+\def\defaultBackground{
+  \usebackgroundtemplate{}
+}

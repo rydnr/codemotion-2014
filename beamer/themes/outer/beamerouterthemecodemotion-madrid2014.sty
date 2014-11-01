@@ -1,0 +1,140 @@
+% ====================================================================
+%
+% Licensed under Apache License version 2.0. See LICENSE file.
+%
+% by Rafael Luque and Jose San Leandro.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProvidesPackage{beamerouterthemecodemotion-madrid2014}
+
+\RequirePackage{tikz}
+
+\def\osoco@coverbackgroundimage{codemotion-madrid2014-cover}
+\def\osoco@backgroundimage{codemotion-madrid2014-bg}
+
+\DeclareOptionBeamer{coverbackgroundimage}{\def\osoco@coverbackgroundimage{#1}}
+
+\def\osoco@clientimage{}
+\DeclareOptionBeamer{clientimage}{\def\osoco@clientimage{#1}}
+
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\pgfdeclareimage[interpolate=true, height=\the\paperheight, width=\the\paperwidth]{coverBackgroundImage}{\osoco@coverbackgroundimage}
+
+\pgfdeclareimage[interpolate=true, height=\the\paperheight, width=\the\paperwidth]{backgroundImage}{\osoco@backgroundimage}
+
+\if\osoco@clientimage\@empty\else%
+\pgfdeclareimage[interpolate=true, width=1.5cm]{clientImage}{\osoco@clientimage}
+\fi%
+
+% -------------------------------------------------------------------------------
+% Title page
+
+\setbeamertemplate{title page} {
+
+  \vskip-1pt
+
+  \hbox{\hskip-\Gm@lmargin
+    \begin{tikzpicture}
+	  \useasboundingbox (0,0) rectangle (\the\paperwidth, \the\paperheight) ;
+	  \pgftext[at=\pgfpoint{0cm}{0cm},left,base]{\pgfuseimage{coverBackgroundImage}} ;
+    \end{tikzpicture}
+  }
+
+  \vskip-1\paperheight
+
+  \vskip.39\paperheight
+
+  % Author(s)
+  \usebeamercolor[fg]{author in cover}
+  \ifx\insertauthor\@empty\else%
+  \hbox{\hskip0.175\paperwidth
+    \vbox{
+      \usebeamerfont{author}\textbf{\textit{\insertauthor}}\par
+    }
+  }
+  \fi
+
+  \vskip10pt
+
+  % Title
+  \usebeamercolor[fg]{title in cover}
+  \hbox{\hskip0.175\paperwidth
+    \vbox{
+      \usebeamerfont{title}\inserttitle\par
+    }
+  }
+
+  \usebeamercolor[fg]{frametitle}
+
+  % The optional subtitle
+  \ifx\insertsubtitle\vskip0pt plus 1filll\else%
+  \hbox{\hskip0.175\paperwidth
+    \vbox{
+      \vskip.02\paperheight
+      \usebeamerfont{subtitle}\insertsubtitle\par
+    }
+  }
+  \fi
+
+  % Institution
+  \ifx\insertinstitute\@empty\else%
+  \hbox{\hskip0.175\paperwidth
+    \vbox{
+      \vskip.05\paperheight
+      \usebeamerfont{institute}\textbf{\textit{\insertinstitute}}\par
+    }
+  }
+  \fi
+
+  \vskip0pt plus 1filll
+}
+
+% -------------------------------------------------------------------------------
+% Page background
+
+\setbeamertemplate{background}{
+  \begin{tikzpicture}
+	\useasboundingbox (0,0) rectangle (\the\paperwidth, \the\paperheight) ;
+	\pgftext[at=\pgfpoint{0cm}{0cm},left,base]{\pgfuseimage{backgroundImage}} ;
+
+    % Licensed to client
+    \ifx\osoco@clientimage\@empty\else%
+      \pgftext[at=\pgfpoint{11cm}{.7cm},left,base]{\pgfuseimage{clientImage}} ;
+    \fi
+
+  \end{tikzpicture}
+}
+
+% -------------------------------------------------------------------------------
+% Navigation symbols
+
+\setbeamertemplate{navigation symbols}{}
+
+% -------------------------------------------------------------------------------
+% Footline
+
+\defbeamertemplate*{footline}{infolines theme}{}
+
+% -------------------------------------------------------------------------------
+% Frametitle
+
+\setbeamertemplate{frametitle}
+{\vskip10pt
+  \leavevmode
+  \hbox{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=.5ex]{frametitle}%
+    \hspace*{6.3em}\Large\insertframetitle
+  \end{beamercolorbox}
+  }%
+  \vskip-4pt
+  \hbox{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex]{frametitle}%
+    \usebeamercolor[fg]{author in cover}
+    \hspace*{6.3em}\tiny\textbf{\textit{\insertauthor}}
+  \end{beamercolorbox}
+  }%
+}

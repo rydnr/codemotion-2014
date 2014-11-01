@@ -1,0 +1,135 @@
+#+TITLE: Continuous Delivery
+#+DESCRIPTION: with Maven, Jenkins, Docker, Puppet, Shipyard and MCollective
+#+AUTHOR: Jose San Leandro
+#+EMAIL: codemotion@acm-sl.org
+#+DATE: 2014-11-22
+#+LANGUAJE: en
+#+KEYWORDS: continuous-delivery, maven, jenkins, docker, puppect, shipyard, mcollective
+#+OPTIONS:   H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME:
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation]
+#+BEAMER_THEME: codemotion-madrid2014
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+     
+* Continuous Delivery
+
+** What
+
+*** 						      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.6
+    :END:
+\includegraphics[height=200px]{book.jpg}
+
+*** Continuous Delivery - Jez Humble and David Farley	      :B_block:BMCOL:  
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+    \textit{``Encouraging greater collaboration between everyone involved in software delivery in order to release valuable software faster and more reliably.''}
+
+
+** Pipeline
+
+*** 							    :B_ignoreheading:
+    :PROPERTIES:
+    :END:
+\includegraphics[height=180px,width=305px]{continuous-delivery-pipeline.png}
+
+
+** Why
+
+** How
+     
+* Maven
+
+** What
+
+*** Maven 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: 
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``Apache Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information.''}
+http://apache.maven.org
+
+*** Maven 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{maven.png}
+
+
+** Why
+
+** How
+
+* Jenkins
+
+** What
+
+*** Jenkins 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: 
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``An extendable open source continuous integration server.''}
+http://jenkins-ci.org
+
+*** Jenkins 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{jenkins.png}
+
+
+** Why
+
+** How
+
+* Docker
+
+** What
+
+** Why
+
+** How
+
+* Shipyard
+
+** What
+
+** Why
+
+** How
+
+** Docker GUI
+
+** Citadel
+
+* Puppet 
+
+** What
+
+** Why
+
+** How
+
+* MCollective
+
+** What
+
+** Why
+
+** How
+
+** Architecture
+
