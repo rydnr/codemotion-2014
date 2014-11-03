@@ -58,8 +58,6 @@
     :END:
 
 \textit{``Apache Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information.''}
-http://apache.maven.org
-
 
 *** Maven logo 					      :BMCOL:B_ignoreheading:
     :PROPERTIES:
@@ -67,6 +65,7 @@ http://apache.maven.org
     :END:
 \includegraphics[width=100]{maven.png}
 
+\small{http://apache.maven.org}
 
 ** Modularization
 
@@ -132,19 +131,79 @@ http://apache.maven.org
 
 \textit{``An extendable open source continuous integration server.''}
 
-http://jenkins-ci.org
-
 *** Jenkins 					      :BMCOL:B_ignoreheading:
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
 \includegraphics[width=100]{jenkins.png}
 
-** How
+http://jenkins-ci.org
+
+** \textit{get-new-version}
+
+*** \textit{get-new-version} job (1) 				    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Helper job to automate the tagging and packaging process.
+- Checks out parent-pom code.
+- Parameterized job with a single parameter: the name of the module triggering the release.
+- Should have higher priority to avoid slot starvation and deadlocks in Jenkins.
+- Expects parent-pom to contain two properties: version.major and version.minor.
+
+** \textit{get-new-version}
+
+*** \textit{get-new-version} job (2) 				    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- When a commit is pushed to the remote repository, Jenkins launches the associated job.
+- The job is a Maven job, which runs \texttt{mvn deploy}.
+- If it succeeds, calls \texttt{get-new-version} with its own name as parameter.
+
+** \textit{get-new-version}
+
+*** \textit{get-new-version} job (3) 				    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Parses the parent pom and defines a new version using a convention: $V = major.minor.BUILD\_NUMBER$ (provided by Jenkins).
+- Using \textbf{maven-versions-plugin}:
+  * Updates its own version to the new version $V$.
+  * Updates all version properties, from latest-SNAPSHOT, to the latest released version (by asking the remote repository).
+  * Updates the version for the triggering module to be $V$.
+- Builds a release the Maven way, with \textbf{maven-release-plugin}.
+- Publishes the new pom, with references to the latest released versions of each module.
+
+** \textit{get-new-version}
+
+*** \textit{get-new-version} job (4) 				    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- The trigger module, using \textbf{maven-versions-plugin} again, updates its own pom to point to the newly released parent pom.
+- Accordingly, uses \textbf{maven-release-plugin} to build all required artifacts and tag the new version: $V$.
+- For each commit, (at least) two artifacts are generated: parent-pom-$V$ and module-$V$.
+
+** \textit{get-new-version}
+
+*** \textit{get-new-version} job (5) 				    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Maven jobs in Jenkins run Maven Embedded engine.
+- Maven annotates parent jobs as dependencies in the dependency graph.
+- For \textit{get-new-version} to work, it cannot be a Maven job: It has to call Maven from the command line.
+- Otherwise, it triggers an infinite loop of downstream jobs.
 
 * Docker
 
-** What
+** Docker
 
 *** Docker 						      :BMCOL:B_block:
     :PROPERTIES:
@@ -154,32 +213,134 @@ http://jenkins-ci.org
 
 \textit{``An open platform for distributed applications for developers and sysadmins.''}
 
-http://www.docker.com
-
 *** Docker 					      :BMCOL:B_ignoreheading:
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
 \includegraphics[width=100]{docker-whale-home-logo.png}
 
+http://www.docker.com
 
-** Why
+** Docker
 
-** How
+*** Docker 							    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+``The Docker Engine container comprises just the application and its dependencies. It runs as an isolated process in userspace on the host operating system, sharing the kernel with other containers. Thus, it enjoys the resource isolation and allocation benefits of VMs but is much more portable and efficient.''
+
+** Docker Concepts
+
+*** Docker Concepts (1) 					    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- \textbf{Image}: Packaged application and dependencies. Ready to launch.
+- \textbf{Container}: An isolated (process, memory, network, etc.) environment, running an \textit{image}.
+- \textbf{Volume}: A folder within a container, accessible from the host. Can be directly mapped to a folder in the host.
+
+** Docker Concepts
+
+*** Docker Concepts (2) 					    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- \textbf{Link}: Docker mechanism to help containers communicate with each other. It's defined as \texttt{--link container:alias}:
+  - \textit{container}: the name of the external, already running container,
+  - \textit{alias}: the name used locally in the new container, pointing to the external container. Docker adds it to /etc/hosts, and defines some environment properties.
+- \textbf{Exposed port}: Docker service can map host ports to internal ports, when the container starts.
+
+** phusion-baseimage
+
+*** phusion-baseimage 						    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- A minimal Ubuntu base image modified for Docker-friendliness.
+- Takes care of the problem of:
+  - Zombie processes,
+  - Logger daemon,
+  - Cron jobs.
+- Motivation explained in their website: ``Your Docker image might be broken without you knowing it''
+https://phusion.github.io/baseimage-docker/
+
+** Dockerfile templates
+
+*** Dockerfile templates 					    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Based on wking's approach and code for Gentoo-based images:
+ https://github.com/wking/dockerfile
+- Modified for phusion-baseimage.
+- Enhanced with in-house bash scripting framework: dry-wit.
+- Allows placeholders in Dockerfiles.
 
 * Shipyard
 
-** What
+** Shipyard
 
-** Why
+*** \textit{Composable Docker Management} 		      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: 
+    :BEAMER_col: 0.6
+    :END:
 
-** How
+\textit{``Built on the Docker cluster management toolkit Citadel, Shipyard gives you the ability to manage Docker resources including containers, hosts and more.}
 
-** Docker GUI
+\textit{Shipyard differs from other management applications in that it promotes composability. At the core, Shipyard only manages Docker (containers, etc). However, using "Extension Images" you can add functionality such as application routing and load balancing, centralized logging, deployment and more.''}
+
+*** Shipyard 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{shipyard-logo.png}
+
+\small{http://shipyard-project.com}
 
 ** Citadel
 
+*** Citadel 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: 
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``Citadel is a toolkit for scheduling containers on a Docker cluster.''}
+
+*** Shipyard 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{citadel-logo.png}
+
+\small{http://citadeltoolkit.org}
+
 * Puppet 
+
+** Puppet
+
+*** Puppet 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: 
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``Puppet manages your servers: you describe machine configurations in an easy-to-read declarative language, and Puppet will bring your systems into the desired state and keep them there.''}
+
+*** Puppet 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{puppet-logo.png}
+
+\small{http://www.puppetlabs.com}
+
 
 ** What
 
@@ -189,8 +350,30 @@ http://www.docker.com
 
 * MCollective
 
-** What
+** MCollective
 
+*** MCollective 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: 
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``MCollective is a powerful orchestration framework.}
+
+\textit{Run actions on thousands of servers simultaneously, using existing plugins or writing your own.''}
+
+*** MCollective 				      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+\includegraphics[width=100]{mcollective-logo.png}
+
+\small{http://www.puppetlabs.com}
+
+
+** What
+   
 ** Why
 
 ** How

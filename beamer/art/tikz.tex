@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage{tikz}
+
+\usetikzlibrary{external} % set up externalization
+
+\tikzexternalize[shell escape=-enable-write18] % activate externalisation
+
+\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape -halt-on-error
+-interaction=batchmode -jobname "\image" "\texsource" && 
+pdftops -eps "\image.pdf"}}
+
+\begin{document}
+\begin{tikzpicture}
+\draw (0,0) circle (1cm);
+\end{tikzpicture}
+\end{document}
