@@ -341,12 +341,90 @@ https://phusion.github.io/baseimage-docker/
 
 \small{http://www.puppetlabs.com}
 
+** Puppet on guests
 
-** What
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
 
-** Why
+- Images can be deployed anywhere.
+- It doesn't require a convention to map host volumes or data containers.
+- Containers can respond to changes propagated via Puppet.
 
-** How
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Containers take much longer to start.
+- Automatic generation, auto-sign, and auto-accept SSL certificates.
+- Puppet infrastructure required in production. 
+
+** Puppet on hosts 
+ 
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Containers are staless.
+- Containers launch fast.
+
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Containers need to be prepared to read their configuration from plain files.
+- The command for launching containers depends on Puppet configuration for that host.
+- Puppet infrastructure required in production. 
+ 
+** Puppet to build data-container images
+ 
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Puppet sets up the configuration for environment-aware images.
+- No Puppet needed in production: just links to data containers.
+- Launching containers do not depend on the host.
+
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- SSL certificate magic takes place on intermediate Docker images.
+- A change in Puppet requires rebuilding the images, replacing the data-containers, and probably the application containers as well.
+
+** Puppet to manage data-container images
+ 
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Data containers launch the Puppet agent: their configuration can evolve over time.
+- Puppet sets up the configuration depending on the environment.
+- Launching containers do not depend on the host.
+
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Puppet infrastructure needed in production.
+- SSL certificate magic takes place on data containers.
 
 * MCollective
 
