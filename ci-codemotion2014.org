@@ -19,7 +19,7 @@
      
 * Continuous Delivery
 
-** What
+** Continuous Delivery
 
 *** 						      :BMCOL:B_ignoreheading:
     :PROPERTIES:
@@ -43,10 +43,19 @@
 \includegraphics[height=180px,width=305px]{continuous-delivery-pipeline.png}
 
 
-** Why
+** Automation
 
-** How
-     
+*** Automation 						      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Speed up the release of new features
+- Special focus on risk: automate everything!
+- Advance towards Continuous Deployment
+- No need for code freeze
+- Automated tagging
+
 * Maven
 
 ** Maven
@@ -450,11 +459,55 @@ https://phusion.github.io/baseimage-docker/
 \small{http://www.puppetlabs.com}
 
 
-** What
-   
-** Why
+** ssh in a loop (1)
+ 
+*** Pros 						      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
 
-** How
+- Simple and straightforward
+- Fast enough up to a certain number of hosts
+- Easy and cheap to adapt to perform different tasks
+- Scriptable
+
+** ssh in a loop (2)
+
+*** Cons 					      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Scripts with hard-coded host names or IPs
+- Requires way too much information about the production environment
+- Cannot easily run remote commands which expect some kind of interaction
+- When the number of host grow, the risk of overlook reported problems increases
+- Requires dealing with account permissions, SSO, etc.
+
+** MCollective
+ 
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Scales with the number of hosts in production
+- Extendable via plugins
+- Doesn't require system accounts, SSO on production hosts
+- Puppet module available for servers
+
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- More complex architecture
+- Requires middleware
+- Scaling beyond certain size requires tuning
+- Middleware should be fault-tolerant
+- Misconfigured setups can generate excessive traffic
 
 ** Architecture
 
