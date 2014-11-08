@@ -4,7 +4,7 @@
 #+EMAIL: codemotion@acm-sl.org
 #+DATE: 2014-11-22
 #+LANGUAJE: en
-#+KEYWORDS: continuous-delivery, maven, jenkins, docker, puppect, shipyard, mcollective
+#+KEYWORDS: continuous-delivery, maven, jenkins, docker, puppet, shipyard, mcollective
 #+OPTIONS:   H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
@@ -20,26 +20,27 @@
 * Continuous Delivery
 
 ** Continuous Delivery
+:PROPERTIES:
+:BEAMER_BACKGROUND: cd-book-bg.png
+:END:
 
 *** 						      :BMCOL:B_ignoreheading:
     :PROPERTIES:
-    :BEAMER_col: 0.6
+    :BEAMER_col: 0.4
     :END:
 \includegraphics[height=200px]{book.jpg}
 
 *** Continuous Delivery - Jez Humble and David Farley	      :B_block:BMCOL:  
     :PROPERTIES:
-    :BEAMER_col: 0.4
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
     :END:
 
     \textit{``Encouraging greater collaboration between everyone involved in software delivery in order to release valuable software faster and more reliably.''}
 
-
 ** Pipeline
 
-*** 							    :B_ignoreheading:
-    :PROPERTIES:
-    :END:
+*** Pipeline				       :B_ignoreheading:
 \includegraphics[height=180px,width=305px]{continuous-delivery-pipeline.png}
 
 
@@ -62,7 +63,7 @@
 
 *** Maven quote 					      :BMCOL:B_block:
     :PROPERTIES:
-    :BEAMER_env: 
+    :BEAMER_env: quotation
     :BEAMER_col: 0.6
     :END:
 
@@ -80,7 +81,7 @@
 
 *** Convention 						      :BMCOL:B_block:
     :PROPERTIES:
-    :BEAMER_env: block
+    :BEAMER_env: proof
     :BEAMER_col: 0.6
     :END:
 
@@ -95,7 +96,7 @@
 \includegraphics[width=100]{graph.jpg}
 
 
-** How
+** Parent POM
 
 *** Parent POM 						      :B_block:
     :PROPERTIES:
@@ -129,12 +130,12 @@
 
 * Jenkins
 
-** What
+** Jenkins
 
 #  # -- \usebackgroundtemplate{\includegraphics[width=\paperwidth]{book.jpg}}
 *** Jenkins 						      :BMCOL:B_block:
     :PROPERTIES:
-    :BEAMER_env: 
+    :BEAMER_env: quotation
     :BEAMER_col: 0.6
     :END:
 
