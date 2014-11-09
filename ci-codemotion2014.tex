@@ -1,4 +1,4 @@
-% Created 2014-11-09 Sun 09:42
+% Created 2014-11-09 Sun 18:38
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -527,7 +527,15 @@
 \section{Shipyard}
 \label{sec-5}
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-5-1]{Shipyard}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{shipyard-definition-bg.png}
+};
+\end{tikzpicture}
+
 \begin{columns}
 \begin{column}{0.6\textwidth}
 
@@ -542,7 +550,7 @@
 \small{http://shipyard-project.com}
 \end{column}
 \end{columns}
-\end{frame}
+\end{frame}} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -570,7 +578,15 @@
 \section{Puppet}
 \label{sec-6}
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-6-1]{Puppet}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{puppet-definition-bg.png}
+};
+\end{tikzpicture}
+
 \begin{columns}
 \begin{column}{0.6\textwidth}
 
@@ -583,9 +599,18 @@
 \small{http://www.puppetlabs.com}
 \end{column}
 \end{columns}
-\end{frame}
+\end{frame}} % background
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-6-2]{Puppet on guests}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{puppet-on-guests-bg.png}
+};
+\end{tikzpicture}
+
+
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{Pros}
@@ -609,9 +634,17 @@
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}
+\end{frame}} % background
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-6-3]{Puppet on hosts}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{puppet-on-hosts-bg.png}
+};
+\end{tikzpicture}
+
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{Pros}
@@ -634,9 +667,17 @@
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}
+\end{frame}} % background
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-6-4]{Puppet to build data-container images}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{puppet-to-build-data-container-images-bg.png}
+};
+\end{tikzpicture}
+
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{Pros}
@@ -659,9 +700,28 @@
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}
+\end{frame}} % background
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-6-5]{Puppet to manage data-container images}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{puppet-to-manage-data-container-images-1-bg.png}
+};
+\end{tikzpicture}
+
+\end{frame}} % background
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[label=sec-6-6]{Puppet to manage data-container images}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{puppet-to-manage-data-container-images-1b-bg.png}
+};
+\end{tikzpicture}
+
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{Pros}
@@ -684,12 +744,20 @@
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}
+\end{frame}} % background
 
 \section{MCollective}
 \label{sec-7}
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-7-1]{MCollective}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{mcollective-definition-bg.png}
+};
+\end{tikzpicture}
+
 \begin{columns}
 \begin{column}{0.6\textwidth}
 
@@ -705,44 +773,68 @@
 \small{http://www.puppetlabs.com}
 \end{column}
 \end{columns}
-\end{frame}
+\end{frame}} % background
 
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-7-2]{ssh in a loop (1)}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{mcollective-ssh-in-a-loop-1-bg.png}
+};
+\end{tikzpicture}
+
 \begin{block}{Pros}
 
 \begin{itemize}
-\item Simple and straightforward
-\item Fast enough up to a certain number of hosts
-\item Easy and cheap to adapt to perform different tasks
-\item Scriptable
+\item Simple and straightforward.
+\item Fast enough up to a certain number of hosts.
+\item Easy and cheap to adapt to perform different tasks.
+\item Scriptable.
 \end{itemize}
 \end{block}
-\end{frame}
+\end{frame}} % background
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-7-3]{ssh in a loop (2)}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{mcollective-ssh-in-a-loop-2-bg.png}
+};
+\end{tikzpicture}
+
 \begin{block}{Cons}
 
 \begin{itemize}
-\item Scripts with hard-coded host names or IPs
-\item Requires way too much information about the production environment
-\item Cannot easily run remote commands which expect some kind of interaction
-\item When the number of host grow, the risk of overlook reported problems increases
+\item Scripts with hard-coded host names or IPs.
+\item Requires way too much information about the production environment.
+\item Cannot easily run remote commands which expect some kind of interaction.
+\item When the number of host grows, the risk of overlook reported problems increases.
 \item Requires dealing with account permissions, SSO, etc.
 \end{itemize}
 \end{block}
-\end{frame}
+\end{frame}} % background
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-7-4]{MCollective}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{mcollective-bg.png}
+};
+\end{tikzpicture}
+
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{block}{Pros}
 
 \begin{itemize}
-\item Scales with the number of hosts in production
-\item Extendable via plugins
-\item Doesn't require system accounts, SSO on production hosts
-\item Puppet module available for servers
+\item Scales with the number of hosts in production.
+\item Extendable via plugins.
+\item Doesn't require system accounts, SSO on production hosts.
+\item Puppet module available for servers.
 \end{itemize}
 \end{block}
 \end{column}
@@ -751,18 +843,26 @@
 \begin{block}{Cons}
 
 \begin{itemize}
-\item More complex architecture
-\item Requires middleware
-\item Scaling beyond certain size requires tuning
-\item Middleware should be fault-tolerant
-\item Misconfigured setups can generate excessive traffic
+\item More complex architecture.
+\item Requires middleware.
+\item Scaling beyond certain size requires tuning.
+\item Middleware should be fault-tolerant.
+\item Misconfigured setups can generate excessive traffic.
 \end{itemize}
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}
+\end{frame}} % background
 
+{
+\setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-7-5]{Architecture}
-\end{frame}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{mcollective-architecture-bg.png}
+};
+\end{tikzpicture}
+
+\end{frame}} % background
 % Emacs 24.3.1 (Org mode 8.2.6)
 \end{document}
