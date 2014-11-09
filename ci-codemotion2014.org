@@ -647,4 +647,8 @@ https://phusion.github.io/baseimage-docker/
 :PROPERTIES:
 :BEAMER_BACKGROUND: mcollective-architecture-bg.png
 :END:
-   
+
+** Middleware
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-middleware-bg.png
+:END:
