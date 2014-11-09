@@ -16,7 +16,10 @@
 #+LATEX_CLASS_OPTIONS: [presentation]
 #+BEAMER_THEME: codemotion-madrid2014
 #+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
-     
+#+LATEX: \addtobeamertemplate{block begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
+#+LATEX: \addtobeamertemplate{block alerted begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
+#+LATEX: \addtobeamertemplate{block example begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}     
+
 * Continuous Delivery
 
 ** Continuous Delivery
@@ -46,6 +49,10 @@
 
 ** Automation
 
+:PROPERTIES:
+:BEAMER_BACKGROUND: cd-automation-bg.png
+:END:
+
 *** Automation 						      :B_block:
     :PROPERTIES:
     :BEAMER_env: block
@@ -60,6 +67,9 @@
 * Maven
 
 ** Maven
+:PROPERTIES:
+:BEAMER_BACKGROUND: maven-definition-bg.png
+:END:
 
 *** Maven quote 					      :BMCOL:B_block:
     :PROPERTIES:
@@ -78,25 +88,20 @@
 \small{http://apache.maven.org}
 
 ** Modularization
+:PROPERTIES:
+:BEAMER_BACKGROUND: maven-graph-bg.png
+:END:
 
-*** Convention 						      :BMCOL:B_block:
-    :PROPERTIES:
-    :BEAMER_env: proof
-    :BEAMER_col: 0.6
-    :END:
+*** Convention 						      :B_block:
 
 - All logic is isolated in its own module.
 - No multi-module projects, unless for WARs.
 - All modules inherit from a common, logic-less module: the parent POM.
 
-*** graph 					      :BMCOL:B_ignoreheading:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-\includegraphics[width=100]{graph.jpg}
-
-
 ** Parent POM
+:PROPERTIES:
+:BEAMER_BACKGROUND: maven-graph-bg.png
+:END:
 
 *** Parent POM 						      :B_block:
     :PROPERTIES:
@@ -109,12 +114,16 @@
 - Simplifies child poms.
 - Uses Maven properties to specify the versions of in-house modules.
 
+
 ** Versioning
+:PROPERTIES:
+:BEAMER_BACKGROUND: maven-versioning-bg.png
+:END:
 
 *** Parent POM 						      :BMCOL:B_block:
     :PROPERTIES:
     :BEAMER_env: block
-    :BEAMER_col: 0.4
+    :BEAMER_col: 0.5
     :END:
 
 - All in-house modules, share the same version: latest-SNAPSHOT
@@ -123,16 +132,16 @@
 
 *** version 					      :BMCOL:B_ignoreheading:
     :PROPERTIES:
-    :BEAMER_col: 0.6
+    :BEAMER_col: 0.5
     :END:
-\includegraphics[width=200]{version.png}
-
 
 * Jenkins
 
 ** Jenkins
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-definition-bg.png
+:END:
 
-#  # -- \usebackgroundtemplate{\includegraphics[width=\paperwidth]{book.jpg}}
 *** Jenkins 						      :BMCOL:B_block:
     :PROPERTIES:
     :BEAMER_env: quotation
@@ -150,6 +159,9 @@
 http://jenkins-ci.org
 
 ** \textit{get-new-version}
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-1-bg.png
+:END:
 
 *** \textit{get-new-version} job (1) 				    :B_block:
     :PROPERTIES:
@@ -162,7 +174,22 @@ http://jenkins-ci.org
 - Should have higher priority to avoid slot starvation and deadlocks in Jenkins.
 - Expects parent-pom to contain two properties: version.major and version.minor.
 
+
 ** \textit{get-new-version}
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-1b-bg.png
+:END:
+
+*** 						      :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+** \textit{get-new-version}
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-2-bg.png
+:END:
 
 *** \textit{get-new-version} job (2) 				    :B_block:
     :PROPERTIES:
@@ -173,7 +200,10 @@ http://jenkins-ci.org
 - The job is a Maven job, which runs \texttt{mvn deploy}.
 - If it succeeds, calls \texttt{get-new-version} with its own name as parameter.
 
-** \textit{get-new-version}
+** \textit{get-new-version} (3)
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-3-bg.png
+:END:
 
 *** \textit{get-new-version} job (3) 				    :B_block:
     :PROPERTIES:
@@ -188,7 +218,22 @@ http://jenkins-ci.org
 - Builds a release the Maven way, with \textbf{maven-release-plugin}.
 - Publishes the new pom, with references to the latest released versions of each module.
 
-** \textit{get-new-version}
+** \textit{get-new-version} (3)
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-3b-bg.png
+:END:
+
+*** 						      :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+
+** \textit{get-new-version} (4)
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-4-bg.png
+:END:
 
 *** \textit{get-new-version} job (4) 				    :B_block:
     :PROPERTIES:
@@ -199,7 +244,37 @@ http://jenkins-ci.org
 - Accordingly, uses \textbf{maven-release-plugin} to build all required artifacts and tag the new version: $V$.
 - For each commit, (at least) two artifacts are generated: parent-pom-$V$ and module-$V$.
 
+
+** \textit{get-new-version} (4)
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-4b-bg.png
+:END:
+
+*** 						      :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+
+
+** \textit{get-new-version} (4)
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-4c-bg.png
+:END:
+
+*** 						      :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+
+
 ** \textit{get-new-version}
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-5-bg.png
+:END:
 
 *** \textit{get-new-version} job (5) 				    :B_block:
     :PROPERTIES:
@@ -211,27 +286,34 @@ http://jenkins-ci.org
 - For \textit{get-new-version} to work, it cannot be a Maven job: It has to call Maven from the command line.
 - Otherwise, it triggers an infinite loop of downstream jobs.
 
+
 * Docker
 
 ** Docker
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-definition-bg.png
+:END:
 
 *** Docker 						      :BMCOL:B_block:
     :PROPERTIES:
     :BEAMER_env: 
-    :BEAMER_col: 0.6
+    :BEAMER_col: 0.5
     :END:
 
 \textit{``An open platform for distributed applications for developers and sysadmins.''}
 
 *** Docker 					      :BMCOL:B_ignoreheading:
     :PROPERTIES:
-    :BEAMER_col: 0.4
+    :BEAMER_col: 0.5
     :END:
 \includegraphics[width=100]{docker-whale-home-logo.png}
 
 http://www.docker.com
 
 ** Docker
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-definition-2-bg.png
+:END:
 
 *** Docker 							    :B_block:
     :PROPERTIES:
@@ -240,7 +322,10 @@ http://www.docker.com
 
 ``The Docker Engine container comprises just the application and its dependencies. It runs as an isolated process in userspace on the host operating system, sharing the kernel with other containers. Thus, it enjoys the resource isolation and allocation benefits of VMs but is much more portable and efficient.''
 
-** Docker Concepts
+** Docker Concepts (1)
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-concepts-1-bg.png
+:END:
 
 *** Docker Concepts (1) 					    :B_block:
     :PROPERTIES:
@@ -251,7 +336,10 @@ http://www.docker.com
 - \textbf{Container}: An isolated (process, memory, network, etc.) environment, running an \textit{image}.
 - \textbf{Volume}: A folder within a container, accessible from the host. Can be directly mapped to a folder in the host.
 
-** Docker Concepts
+** Docker Concepts (2)
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-concepts-2-bg.png
+:END:
 
 *** Docker Concepts (2) 					    :B_block:
     :PROPERTIES:
@@ -264,6 +352,9 @@ http://www.docker.com
 - \textbf{Exposed port}: Docker service can map host ports to internal ports, when the container starts.
 
 ** phusion-baseimage
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-phusion-baseimage-bg.png
+:END:
 
 *** phusion-baseimage 						    :B_block:
     :PROPERTIES:
@@ -279,6 +370,9 @@ http://www.docker.com
 https://phusion.github.io/baseimage-docker/
 
 ** Dockerfile templates
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-dockerfile-templates-bg.png
+:END:
 
 *** Dockerfile templates 					    :B_block:
     :PROPERTIES:
@@ -314,6 +408,9 @@ https://phusion.github.io/baseimage-docker/
 \small{http://shipyard-project.com}
 
 ** Citadel
+:PROPERTIES:
+:BEAMER_BACKGROUND: shipyard-citadel-bg.png
+:END:
 
 *** Citadel 						      :BMCOL:B_block:
     :PROPERTIES:
