@@ -401,7 +401,10 @@ used as a communication channel. BACKGROUND is the optional background"
      (if (org-string-nw-p background)
 	 (concat
 	  "{\n"
-	  "\\setbeamertemplate{navigation symbols}{}\n")
+	  "\\setbeamertemplate{navigation symbols}{}\n"
+;;	  "\\usebackgroundtemplate{% \n"
+;;	  "  \\includegraphics[width=\\paperwidth]{" (format "%s" background) "}}\n")
+	  )
        "")
      "\\begin{frame}"
          ;; Overlay specification, if any. When surrounded by
@@ -462,13 +465,19 @@ used as a communication channel. BACKGROUND is the optional background"
 	  "\\node[at=(current page.center)] {\n"
 	  "\\includegraphics[width=\\paperwidth]{" (format "%s" background) "}\n"
 	  "};\n"
+	    (let ((env (org-element-property :BEAMER_ENV headline)))
+	      (format "\\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {%s};\n"
+		      (if (and env (equal (downcase env) "fullframe")) ""
+			(org-export-data
+			 (org-element-property :title headline) info))))
 	  "\\end{tikzpicture}\n")
        "")
 	    (if (not fragilep) contents
 	      (replace-regexp-in-string "\\`\n*" "\\& " (or contents "")))
 	    "\\end{frame}"
 	    (if (org-string-nw-p background)
-		"} % background\n"
+		 "\n} % background\n"
+;;		"\\usebackgroundtemplate{}\n"
 	      "")
 	    )))
 

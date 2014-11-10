@@ -454,6 +454,11 @@ https://phusion.github.io/baseimage-docker/
 
 \small{http://www.puppetlabs.com}
 
+** Puppet
+:PROPERTIES:
+:BEAMER_BACKGROUND: puppet-definition-1-bg.png
+:END:
+
 ** Puppet on guests
 :PROPERTIES:
 :BEAMER_BACKGROUND: puppet-on-guests-bg.png

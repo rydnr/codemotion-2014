@@ -1,4 +1,4 @@
-% Created 2014-11-09 Sun 18:50
+% Created 2014-11-10 Mon 13:33
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -45,6 +45,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{cd-book-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Continuous Delivery};
 \end{tikzpicture}
 
 \begin{columns}
@@ -59,7 +60,8 @@
 \end{quotation}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 \begin{frame}[label=sec-1-2]{Pipeline}
 \begin{block}{Pipeline}
@@ -75,6 +77,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{cd-automation-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Automation};
 \end{tikzpicture}
 
 \begin{block}{Automation}
@@ -87,7 +90,8 @@
 \item Automated tagging
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 \section{Maven}
 \label{sec-2}
@@ -99,6 +103,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{maven-definition-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Maven};
 \end{tikzpicture}
 
 \begin{columns}
@@ -115,7 +120,8 @@
 \small{http://apache.maven.org}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -124,6 +130,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{maven-graph-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Modularization};
 \end{tikzpicture}
 
 \begin{block}{Convention}
@@ -133,7 +140,8 @@
 \item All modules inherit from a common, logic-less module: the parent POM.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -142,6 +150,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{maven-graph-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Parent POM};
 \end{tikzpicture}
 
 \begin{block}{Parent POM}
@@ -154,7 +163,8 @@
 \item Uses Maven properties to specify the versions of in-house modules.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 
 {
@@ -164,6 +174,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{maven-versioning-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Versioning};
 \end{tikzpicture}
 
 \begin{columns}
@@ -182,7 +193,8 @@
 
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 \section{Jenkins}
 \label{sec-3}
@@ -194,6 +206,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-definition-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Jenkins};
 \end{tikzpicture}
 
 \begin{columns}
@@ -210,7 +223,8 @@
 \url{http://jenkins-ci.org}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -219,6 +233,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-get-new-version-1-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {\textit{get-new-version}};
 \end{tikzpicture}
 
 \begin{block}{\textit{get-new-version} job (1)}
@@ -231,7 +246,8 @@
 \item Expects parent-pom to contain two properties: version.major and version.minor.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 
 {
@@ -241,6 +257,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-get-new-version-1b-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {\textit{get-new-version}};
 \end{tikzpicture}
 
 \begin{columns}
@@ -250,7 +267,8 @@
 \end{quotation}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -259,6 +277,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-get-new-version-2-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {\textit{get-new-version}};
 \end{tikzpicture}
 
 \begin{block}{\textit{get-new-version} job (2)}
@@ -269,7 +288,8 @@
 \item If it succeeds, calls \texttt{get-new-version} with its own name as parameter.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -278,6 +298,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-get-new-version-3-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {\textit{get-new-version} (3)};
 \end{tikzpicture}
 
 \begin{block}{\textit{get-new-version} job (3)}
@@ -294,7 +315,8 @@
 \item Publishes the new pom, with references to the latest released versions of each module.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -303,6 +325,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-get-new-version-3b-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {\textit{get-new-version} (3)};
 \end{tikzpicture}
 
 \begin{columns}
@@ -312,7 +335,8 @@
 \end{quotation}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 
 {
@@ -322,6 +346,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-get-new-version-4-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {\textit{get-new-version} (4)};
 \end{tikzpicture}
 
 \begin{block}{\textit{get-new-version} job (4)}
@@ -332,7 +357,8 @@
 \item For each commit, (at least) two artifacts are generated: parent-pom-$V$ and module-$V$.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 
 {
@@ -342,6 +368,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-get-new-version-4b-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {\textit{get-new-version} (4)};
 \end{tikzpicture}
 
 \begin{columns}
@@ -351,7 +378,8 @@
 \end{quotation}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 
 
@@ -362,6 +390,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-get-new-version-4c-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {\textit{get-new-version} (4)};
 \end{tikzpicture}
 
 \begin{columns}
@@ -371,7 +400,8 @@
 \end{quotation}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 
 
@@ -382,6 +412,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{jenkins-get-new-version-5-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {\textit{get-new-version}};
 \end{tikzpicture}
 
 \begin{block}{\textit{get-new-version} job (5)}
@@ -393,7 +424,8 @@
 \item Otherwise, it triggers an infinite loop of downstream jobs.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 
 \section{Docker}
@@ -406,6 +438,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{docker-definition-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Docker};
 \end{tikzpicture}
 
 \begin{columns}
@@ -420,7 +453,8 @@
 \url{http://www.docker.com}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -429,13 +463,15 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{docker-definition-2-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Docker};
 \end{tikzpicture}
 
 \begin{block}{Docker}
 
 ``The Docker Engine container comprises just the application and its dependencies. It runs as an isolated process in userspace on the host operating system, sharing the kernel with other containers. Thus, it enjoys the resource isolation and allocation benefits of VMs but is much more portable and efficient.''
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -444,6 +480,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{docker-concepts-1-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Docker Concepts (1)};
 \end{tikzpicture}
 
 \begin{block}{Docker Concepts (1)}
@@ -454,7 +491,8 @@
 \item \textbf{Volume}: A folder within a container, accessible from the host. Can be directly mapped to a folder in the host.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -463,6 +501,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{docker-concepts-2-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Docker Concepts (2)};
 \end{tikzpicture}
 
 \begin{block}{Docker Concepts (2)}
@@ -476,7 +515,8 @@
 \item \textbf{Exposed port}: Docker service can map host ports to internal ports, when the container starts.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -485,6 +525,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{docker-phusion-baseimage-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {phusion-baseimage};
 \end{tikzpicture}
 
 \begin{block}{phusion-baseimage}
@@ -501,7 +542,8 @@
 \end{itemize}
 \url{https://phusion.github.io/baseimage-docker/}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -510,6 +552,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{docker-dockerfile-templates-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Dockerfile templates};
 \end{tikzpicture}
 
 \begin{block}{Dockerfile templates}
@@ -522,7 +565,8 @@
 \item Allows placeholders in Dockerfiles.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 \section{Shipyard}
 \label{sec-5}
@@ -534,6 +578,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{shipyard-definition-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Shipyard};
 \end{tikzpicture}
 
 \begin{columns}
@@ -550,7 +595,8 @@
 \small{http://shipyard-project.com}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -559,6 +605,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{shipyard-citadel-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Citadel};
 \end{tikzpicture}
 
 \begin{columns}
@@ -573,7 +620,8 @@
 \small{http://citadeltoolkit.org}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 \section{Puppet}
 \label{sec-6}
@@ -585,6 +633,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{puppet-definition-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Puppet};
 \end{tikzpicture}
 
 \begin{columns}
@@ -599,15 +648,30 @@
 \small{http://www.puppetlabs.com}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
-\begin{frame}[label=sec-6-2]{Puppet on guests}
+\begin{frame}[label=sec-6-2]{Puppet}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{puppet-definition-1-bg.png}
+};
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Puppet};
+\end{tikzpicture}
+
+\end{frame}
+} % background
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[label=sec-6-3]{Puppet on guests}
 \begin{tikzpicture}[remember picture,overlay]
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{puppet-on-guests-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Puppet on guests};
 \end{tikzpicture}
 
 
@@ -634,15 +698,17 @@
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
-\begin{frame}[label=sec-6-3]{Puppet on hosts}
+\begin{frame}[label=sec-6-4]{Puppet on hosts}
 \begin{tikzpicture}[remember picture,overlay]
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{puppet-on-hosts-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Puppet on hosts};
 \end{tikzpicture}
 
 \begin{columns}
@@ -667,15 +733,17 @@
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
-\begin{frame}[label=sec-6-4]{Puppet to build data-container images}
+\begin{frame}[label=sec-6-5]{Puppet to build data-container images}
 \begin{tikzpicture}[remember picture,overlay]
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{puppet-to-build-data-container-images-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Puppet to build data-container images};
 \end{tikzpicture}
 
 \begin{columns}
@@ -700,26 +768,30 @@
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}} % background
-
-{
-\setbeamertemplate{navigation symbols}{}
-\begin{frame}[label=sec-6-5]{Puppet to manage data-container images}
-\begin{tikzpicture}[remember picture,overlay]
-\node[at=(current page.center)] {
-\includegraphics[width=\paperwidth]{puppet-to-manage-data-container-images-1-bg.png}
-};
-\end{tikzpicture}
-
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
 \begin{frame}[label=sec-6-6]{Puppet to manage data-container images}
 \begin{tikzpicture}[remember picture,overlay]
 \node[at=(current page.center)] {
+\includegraphics[width=\paperwidth]{puppet-to-manage-data-container-images-1-bg.png}
+};
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Puppet to manage data-container images};
+\end{tikzpicture}
+
+\end{frame}
+} % background
+
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[label=sec-6-7]{Puppet to manage data-container images}
+\begin{tikzpicture}[remember picture,overlay]
+\node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{puppet-to-manage-data-container-images-1b-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Puppet to manage data-container images};
 \end{tikzpicture}
 
 \begin{columns}
@@ -744,7 +816,8 @@
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 \section{MCollective}
 \label{sec-7}
@@ -756,6 +829,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{mcollective-definition-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {MCollective};
 \end{tikzpicture}
 
 \begin{columns}
@@ -773,7 +847,8 @@
 \small{http://www.puppetlabs.com}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 
 {
@@ -783,6 +858,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{mcollective-ssh-in-a-loop-1-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {ssh in a loop (1)};
 \end{tikzpicture}
 
 \begin{block}{Pros}
@@ -794,7 +870,8 @@
 \item Scriptable.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -803,6 +880,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{mcollective-ssh-in-a-loop-2-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {ssh in a loop (2)};
 \end{tikzpicture}
 
 \begin{block}{Cons}
@@ -815,7 +893,8 @@
 \item Requires dealing with account permissions, SSO, etc.
 \end{itemize}
 \end{block}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -824,6 +903,7 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{mcollective-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {MCollective};
 \end{tikzpicture}
 
 \begin{columns}
@@ -852,7 +932,8 @@
 \end{block}
 \end{column}
 \end{columns}
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -861,9 +942,11 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{mcollective-architecture-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Architecture};
 \end{tikzpicture}
 
-\end{frame}} % background
+\end{frame}
+} % background
 
 {
 \setbeamertemplate{navigation symbols}{}
@@ -872,7 +955,9 @@
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{mcollective-middleware-bg.png}
 };
+\node[shift={(4.5cm, -0.9cm)}, right] at (current page.north west) {Middleware};
 \end{tikzpicture}
-\end{frame}} % background
+\end{frame}
+} % background
 % Emacs 24.3.1 (Org mode 8.2.6)
 \end{document}
