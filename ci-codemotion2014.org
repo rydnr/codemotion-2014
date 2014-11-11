@@ -1,11 +1,10 @@
-#+TITLE: Continuous Delivery
+#+TITLE: 
 #+DESCRIPTION: with Maven, Jenkins, Docker, Puppet, Shipyard and MCollective
-#+AUTHOR: Jose San Leandro
 #+EMAIL: codemotion@acm-sl.org
 #+DATE: 2014-11-22
 #+LANGUAJE: en
 #+KEYWORDS: continuous-delivery, maven, jenkins, docker, puppet, shipyard, mcollective
-#+OPTIONS:   H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
 #+EXPORT_SELECT_TAGS: export
@@ -16,12 +15,19 @@
 #+LATEX_CLASS_OPTIONS: [presentation]
 #+BEAMER_THEME: codemotion-madrid2014
 #+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+#+LATEX: \title[Continuous Delivery]{}
+#+LATEX: \author[Jose San Leandro]{}
 #+LATEX: \addtobeamertemplate{block begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
 #+LATEX: \addtobeamertemplate{block alerted begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
 #+LATEX: \addtobeamertemplate{block example begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}     
 
-* Continuous Delivery
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: frontpage.png
+:END:
 
+* Continuous Delivery*
 ** Continuous Delivery
 :PROPERTIES:
 :BEAMER_BACKGROUND: cd-book-bg.png
@@ -48,7 +54,6 @@
 
 
 ** Automation
-
 :PROPERTIES:
 :BEAMER_BACKGROUND: cd-automation-bg.png
 :END:
