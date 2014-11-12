@@ -1,5 +1,5 @@
 #+TITLE: 
-#+DESCRIPTION: with Maven, Jenkins, Docker, Puppet, Shipyard and MCollective
+#+DESCRIPTION: Continuous Delivery with Maven, Jenkins, Docker, Puppet, Shipyard and MCollective
 #+EMAIL: codemotion@acm-sl.org
 #+DATE: 2014-11-22
 #+LANGUAJE: en
@@ -15,20 +15,38 @@
 #+LATEX_CLASS_OPTIONS: [presentation]
 #+BEAMER_THEME: codemotion-madrid2014
 #+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+# % +LATEX: \usepackage{multimedia}
 #+LATEX: \title[Continuous Delivery]{}
 #+LATEX: \author[Jose San Leandro]{}
 #+LATEX: \addtobeamertemplate{block begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
 #+LATEX: \addtobeamertemplate{block alerted begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
 #+LATEX: \addtobeamertemplate{block example begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}     
-
 * 
 ** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: frontpage.png
 :END:
 
-* Continuous Delivery*
-** Continuous Delivery
+* Introduction
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: what-is-this-all-about-bg.png
+:END:
+
+*** What is this all about? 					    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- A brief introduction to Continuous Delivery.
+- How each tool fits in the big picture.
+- The approach I propose, without the pain.
+- Help to get you started on your own.
+- Advance towards Continuous Deployment.
+
+* Continuous Delivery
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: cd-book-bg.png
 :END:
@@ -37,7 +55,7 @@
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
-\includegraphics[height=200px]{book.jpg}
+# \includegraphics[height=190px]{book.jpg}
 
 *** Continuous Delivery - Jez Humble and David Farley	      :B_block:BMCOL:  
     :PROPERTIES:
@@ -47,10 +65,10 @@
 
     \textit{``Encouraging greater collaboration between everyone involved in software delivery in order to release valuable software faster and more reliably.''}
 
-** Pipeline
-
-*** Pipeline				       :B_ignoreheading:
-\includegraphics[height=180px,width=305px]{continuous-delivery-pipeline.png}
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: continuous-delivery-pipeline-bg.png
+:END:
 
 
 ** Automation
@@ -58,20 +76,22 @@
 :BEAMER_BACKGROUND: cd-automation-bg.png
 :END:
 
-*** Automation 						      :B_block:
+*** Bots welcome 						    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
 
-- Speed up the release of new features
+- Speed up the release of new features.
 - Special focus on risk: automate everything!
-- Advance towards Continuous Deployment
-- No need for code freeze
-- Automated tagging
+- Advance towards Continuous Deployment.
+- No need for code freeze.
+- Automated tagging.
+
+* What is this all about?
 
 * Maven
 
-** Maven
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: maven-definition-bg.png
 :END:
@@ -108,7 +128,7 @@
 :BEAMER_BACKGROUND: maven-graph-bg.png
 :END:
 
-*** Parent POM 						      :B_block:
+*** According to Maven, a parent... 			    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -125,13 +145,13 @@
 :BEAMER_BACKGROUND: maven-versioning-bg.png
 :END:
 
-*** Parent POM 						      :BMCOL:B_block:
+*** Versions are unique and time-ordered 		      :BMCOL:B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :BEAMER_col: 0.5
     :END:
 
-- All in-house modules, share the same version: latest-SNAPSHOT
+- All in-house modules, share the same version: \texttt{latest-SNAPSHOT}.
 - All local environments get always up-to-date code.
 - Versions are resolved when generating releases.
 
@@ -142,7 +162,7 @@
 
 * Jenkins
 
-** Jenkins
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-definition-bg.png
 :END:
@@ -163,12 +183,12 @@
 
 http://jenkins-ci.org
 
-** \textit{get-new-version}
+** \textit{get-new-version} job
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-1-bg.png
 :END:
 
-*** \textit{get-new-version} job (1) 				    :B_block:
+*** Generates unique version numbers
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -179,8 +199,7 @@ http://jenkins-ci.org
 - Should have higher priority to avoid slot starvation and deadlocks in Jenkins.
 - Expects parent-pom to contain two properties: version.major and version.minor.
 
-
-** \textit{get-new-version}
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-1b-bg.png
 :END:
@@ -191,12 +210,12 @@ http://jenkins-ci.org
     :BEAMER_col: 0.6
     :END:
 
-** \textit{get-new-version}
+** \textit{get-new-version} job (2)
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-2-bg.png
 :END:
 
-*** \textit{get-new-version} job (2) 				    :B_block:
+*** One \textbf{job} to rule them all
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -205,25 +224,25 @@ http://jenkins-ci.org
 - The job is a Maven job, which runs \texttt{mvn deploy}.
 - If it succeeds, calls \texttt{get-new-version} with its own name as parameter.
 
-** \textit{get-new-version} (3)
+** \textit{get-new-version} job (3)
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-3-bg.png
 :END:
 
-*** \textit{get-new-version} job (3) 				    :B_block:
+*** maven-versions-plugin magic
     :PROPERTIES:
     :BEAMER_env: block
     :END:
 
 - Parses the parent pom and defines a new version using a convention: $V = major.minor.BUILD\_NUMBER$ (provided by Jenkins).
 - Using \textbf{maven-versions-plugin}:
-  * Updates its own version to the new version $V$.
-  * Updates all version properties, from latest-SNAPSHOT, to the latest released version (by asking the remote repository).
-  * Updates the version for the triggering module to be $V$.
+  * Points itself to new version $V$.
+  * Uses the latest released versions for all modules.
+  * Ensures the version for the triggering module becomes $V$.
 - Builds a release the Maven way, with \textbf{maven-release-plugin}.
 - Publishes the new pom, with references to the latest released versions of each module.
 
-** \textit{get-new-version} (3)
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-3b-bg.png
 :END:
@@ -235,12 +254,12 @@ http://jenkins-ci.org
     :END:
 
 
-** \textit{get-new-version} (4)
+** Releasing the child module
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-4-bg.png
 :END:
 
-*** \textit{get-new-version} job (4) 				    :B_block:
+*** Finally
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -250,20 +269,12 @@ http://jenkins-ci.org
 - For each commit, (at least) two artifacts are generated: parent-pom-$V$ and module-$V$.
 
 
-** \textit{get-new-version} (4)
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-4b-bg.png
 :END:
 
-*** 						      :B_ignoreheading:BMCOL:
-    :PROPERTIES:
-    :BEAMER_env: quotation
-    :BEAMER_col: 0.6
-    :END:
-
-
-
-** \textit{get-new-version} (4)
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-4c-bg.png
 :END:
@@ -276,12 +287,12 @@ http://jenkins-ci.org
 
 
 
-** \textit{get-new-version}
+** \textit{get-new-version} job fix
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-5-bg.png
 :END:
 
-*** \textit{get-new-version} job (5) 				    :B_block:
+*** Maven Embedded is too embedded 				    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -294,7 +305,7 @@ http://jenkins-ci.org
 
 * Docker
 
-** Docker
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: docker-definition-bg.png
 :END:
@@ -332,7 +343,7 @@ http://www.docker.com
 :BEAMER_BACKGROUND: docker-concepts-1-bg.png
 :END:
 
-*** Docker Concepts (1) 					    :B_block:
+*** Packaging applications
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -346,7 +357,7 @@ http://www.docker.com
 :BEAMER_BACKGROUND: docker-concepts-2-bg.png
 :END:
 
-*** Docker Concepts (2) 					    :B_block:
+*** Running applications 				    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -361,7 +372,7 @@ http://www.docker.com
 :BEAMER_BACKGROUND: docker-phusion-baseimage-bg.png
 :END:
 
-*** phusion-baseimage 						    :B_block:
+*** Cleaning things up 			    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -379,7 +390,7 @@ https://phusion.github.io/baseimage-docker/
 :BEAMER_BACKGROUND: docker-dockerfile-templates-bg.png
 :END:
 
-*** Dockerfile templates 					    :B_block:
+*** Variables in Dockerfiles 					    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -415,7 +426,7 @@ https://phusion.github.io/baseimage-docker/
 
 \small{http://shipyard-project.com}
 
-** Citadel
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: shipyard-citadel-bg.png
 :END:
@@ -543,9 +554,9 @@ https://phusion.github.io/baseimage-docker/
 :BEAMER_BACKGROUND: puppet-to-manage-data-container-images-1-bg.png
 :END:
 
-** Puppet to manage data-container images
+** Environment isolated in data containers
 :PROPERTIES:
-:BEAMER_BACKGROUND: puppet-to-manage-data-container-images-1b-bg.png
+:BEAMER_BACKGROUND: puppet-to-manage-data-container-images-1-bg.png
 :END:
  
 *** Pros 						      :BMCOL:B_block:
@@ -662,3 +673,35 @@ https://phusion.github.io/baseimage-docker/
 :PROPERTIES:
 :BEAMER_BACKGROUND: mcollective-middleware-bg.png
 :END:
+
+* Next steps
+** Now what?
+:PROPERTIES:
+:BEAMER_BACKGROUND: now-what-bg.png
+:END:
+
+
+*** First things first 						    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Clone my repos: http://github.com/rydnr/dockerfile and http://github.com/rydnr/dry-wit
+- Take http://githob.com/rydnr/acmsl-jenkins-configs as a template for \textbf{get-new-version} job.
+- Build your custom Delivery Pipeline.
+- Make Jenkins generate Docker images and push them to a private index.
+
+** And then?
+:PROPERTIES:
+:BEAMER_BACKGROUND: now-what-bg.png
+:END:
+
+*** Customize and test 						    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Build mcollective-client and mcollective-server images.
+- Install shipyard and mcollective server agent in a test environment.
+- Launch docker containers from the mcollective client, via mcollective shell agent.
+- Try Interlock in the path to Continuous Deployment!
