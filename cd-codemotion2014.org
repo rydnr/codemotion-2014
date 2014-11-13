@@ -18,9 +18,9 @@
 # % +LATEX: \usepackage{multimedia}
 #+LATEX: \title[Continuous Delivery]{}
 #+LATEX: \author[Jose San Leandro]{}
-#+LATEX: \addtobeamertemplate{block begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
-#+LATEX: \addtobeamertemplate{block alerted begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
-#+LATEX: \addtobeamertemplate{block example begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}     
+#+LATEX: \addtobeamertemplate{block begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}
+#+LATEX: \addtobeamertemplate{block alerted begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}
+#+LATEX: \addtobeamertemplate{block example begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}     
 * 
 ** 
 :PROPERTIES:
@@ -128,7 +128,7 @@
 :BEAMER_BACKGROUND: maven-graph-bg.png
 :END:
 
-*** According to Maven, a parent... 			    :B_block:
+*** Our Parent POM is useful as long as... 			    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -449,7 +449,7 @@ https://phusion.github.io/baseimage-docker/
 
 * Puppet 
 
-** Puppet
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: puppet-definition-bg.png
 :END:
@@ -470,7 +470,7 @@ https://phusion.github.io/baseimage-docker/
 
 \small{http://www.puppetlabs.com}
 
-** Puppet
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: puppet-definition-1-bg.png
 :END:
@@ -580,7 +580,7 @@ https://phusion.github.io/baseimage-docker/
 
 * MCollective
 
-** MCollective
+** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: mcollective-definition-bg.png
 :END:
@@ -607,7 +607,7 @@ https://phusion.github.io/baseimage-docker/
 
 ** ssh in a loop (1)
 :PROPERTIES:
-:BEAMER_BACKGROUND: mcollective-ssh-in-a-loop-1-bg.png
+:BEAMER_BACKGROUND: mcollective-in-a-loop-1-bg.png
 :END:
  
 *** Pros 						      :B_block:
@@ -622,7 +622,7 @@ https://phusion.github.io/baseimage-docker/
 
 ** ssh in a loop (2)
 :PROPERTIES:
-:BEAMER_BACKGROUND: mcollective-ssh-in-a-loop-2-bg.png
+:BEAMER_BACKGROUND: mcollective-in-a-loop-2-bg.png
 :END:
 
 *** Cons 					      :B_block:
@@ -680,14 +680,13 @@ https://phusion.github.io/baseimage-docker/
 :BEAMER_BACKGROUND: now-what-bg.png
 :END:
 
-
 *** First things first 						    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
 
 - Clone my repos: http://github.com/rydnr/dockerfile and http://github.com/rydnr/dry-wit
-- Take http://githob.com/rydnr/acmsl-jenkins-configs as a template for \textbf{get-new-version} job.
+- Take http://github.com/rydnr/acmsl-jenkins-configs as a template for \textbf{get-new-version} job.
 - Build your custom Delivery Pipeline.
 - Make Jenkins generate Docker images and push them to a private index.
 

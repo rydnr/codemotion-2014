@@ -20,15 +20,15 @@
 %% \setromanfont{Georgia}
 %% \setsansfont{Tahoma}
 
-\DeclareOptionBeamer{coverbackgroundimage}{
-	\PassOptionsToPackage{coverbackgroundimage=#1}{beamerouterthemecodemotion-madrid2014}
-}
+%\DeclareOptionBeamer{coverbackgroundimage}{
+%	\PassOptionsToPackage{coverbackgroundimage=#1}{beamerouterthemecodemotion-madrid2014}
+%}
 
-\DeclareOptionBeamer{clientimage}{
-	\PassOptionsToPackage{clientimage=#1}{beamerouterthemecodemotion-madrid2014}
-}
+%\DeclareOptionBeamer{clientimage}{
+%	\PassOptionsToPackage{clientimage=#1}{beamerouterthemecodemotion-madrid2014}
+%}
 
-\ProcessOptionsBeamer
+%\ProcessOptionsBeamer
 
 \mode<presentation>
 
@@ -41,14 +41,14 @@
 
 \def\wide#1{\hspace*{-\beamer@leftmargin}#1}
 
-\def\picBackground#1{
-  \usebackgroundtemplate{%
-    \begin{pgfpicture}{0cm}{0cm}{\the\paperwidth}{\the\paperheight}
-      \includegraphics[width=\paperwidth,height=\paperheight]{#1}
-    \end{pgfpicture}
-  }
-}
+%\def\picBackground#1{
+%  \usebackgroundtemplate{%
+%    \begin{pgfpicture}{0cm}{0cm}{\the\paperwidth}{\the\paperheight}
+%      \includegraphics[width=\paperwidth,height=\paperheight]{#1}
+%    \end{pgfpicture}
+%  }
+%}
 
-\def\defaultBackground{
-  \usebackgroundtemplate{}
-}
+%\def\defaultBackground{
+%  \usebackgroundtemplate{}
+%}

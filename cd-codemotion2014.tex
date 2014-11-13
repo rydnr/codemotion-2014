@@ -1,4 +1,4 @@
-% Created 2014-11-12 Wed 20:59
+% Created 2014-11-13 Thu 06:16
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -28,9 +28,9 @@
 
 \title[Continuous Delivery]{}
 \author[Jose San Leandro]{}
-\addtobeamertemplate{block begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
-\addtobeamertemplate{block alerted begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
-\addtobeamertemplate{block example begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{1}}
+\addtobeamertemplate{block begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}
+\addtobeamertemplate{block alerted begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}
+\addtobeamertemplate{block example begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}
 \section{}
 \label{sec-1}
 {
@@ -199,7 +199,7 @@
 \node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {Parent POM};
 \end{tikzpicture}
 
-\begin{block}{According to Maven, a parent\ldots{}}
+\begin{block}{Our Parent POM is useful as long as\ldots{}}
 
 \begin{itemize}
 \item Declares all dependencies in one place.
@@ -664,12 +664,12 @@
 
 {
 \setbeamertemplate{navigation symbols}{}
-\begin{frame}[label=sec-9-1]{Puppet}
+\begin{frame}[label=sec-9-1]{}
 \begin{tikzpicture}[remember picture,overlay]
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{puppet-definition-bg.png}
 };
-\node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {Puppet};
+\node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {};
 \end{tikzpicture}
 
 \begin{columns}
@@ -689,12 +689,12 @@
 
 {
 \setbeamertemplate{navigation symbols}{}
-\begin{frame}[label=sec-9-2]{Puppet}
+\begin{frame}[label=sec-9-2]{}
 \begin{tikzpicture}[remember picture,overlay]
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{puppet-definition-1-bg.png}
 };
-\node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {Puppet};
+\node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {};
 \end{tikzpicture}
 
 \end{frame}
@@ -860,12 +860,12 @@
 
 {
 \setbeamertemplate{navigation symbols}{}
-\begin{frame}[label=sec-10-1]{MCollective}
+\begin{frame}[label=sec-10-1]{}
 \begin{tikzpicture}[remember picture,overlay]
 \node[at=(current page.center)] {
 \includegraphics[width=\paperwidth]{mcollective-definition-bg.png}
 };
-\node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {MCollective};
+\node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {};
 \end{tikzpicture}
 
 \begin{columns}
@@ -892,7 +892,7 @@
 \begin{frame}[label=sec-10-2]{ssh in a loop (1)}
 \begin{tikzpicture}[remember picture,overlay]
 \node[at=(current page.center)] {
-\includegraphics[width=\paperwidth]{mcollective-ssh-in-a-loop-1-bg.png}
+\includegraphics[width=\paperwidth]{mcollective-in-a-loop-1-bg.png}
 };
 \node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {ssh in a loop (1)};
 \end{tikzpicture}
@@ -914,7 +914,7 @@
 \begin{frame}[label=sec-10-3]{ssh in a loop (2)}
 \begin{tikzpicture}[remember picture,overlay]
 \node[at=(current page.center)] {
-\includegraphics[width=\paperwidth]{mcollective-ssh-in-a-loop-2-bg.png}
+\includegraphics[width=\paperwidth]{mcollective-in-a-loop-2-bg.png}
 };
 \node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {ssh in a loop (2)};
 \end{tikzpicture}
@@ -1009,12 +1009,11 @@
 \node[shift={(4.5cm, -0.44cm)}, right] at (current page.north west) {Now what?};
 \end{tikzpicture}
 
-
 \begin{block}{First things first}
 
 \begin{itemize}
 \item Clone my repos: \url{http://github.com/rydnr/dockerfile} and \url{http://github.com/rydnr/dry-wit}
-\item Take \url{http://githob.com/rydnr/acmsl-jenkins-configs} as a template for \textbf{get-new-version} job.
+\item Take \url{http://github.com/rydnr/acmsl-jenkins-configs} as a template for \textbf{get-new-version} job.
 \item Build your custom Delivery Pipeline.
 \item Make Jenkins generate Docker images and push them to a private index.
 \end{itemize}
