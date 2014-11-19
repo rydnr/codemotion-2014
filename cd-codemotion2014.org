@@ -12,9 +12,9 @@
 #+LINK_UP:   
 #+LINK_HOME:
 #+LATEX_CLASS: beamer
-#+LATEX_CLASS_OPTIONS: [presentation]
+#+LATEX_CLASS_OPTIONS: [presentation,c]
 #+BEAMER_THEME: codemotion-madrid2014
-#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt) %4BEAMER_BLOCK(c)
 # % +LATEX: \usepackage{multimedia}
 #+LATEX: \title[Continuous Delivery]{}
 #+LATEX: \author[Jose San Leandro]{}
@@ -79,6 +79,7 @@
 *** Bots welcome 						    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
+    :BEAMER_opt: c
     :END:
 
 - Speed up the release of new features.
@@ -87,7 +88,12 @@
 - No need for code freeze.
 - Automated tagging.
 
-* What is this all about?
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-maven.png
+:END:
+
 
 * Maven
 
@@ -110,7 +116,7 @@
     :END:
 \includegraphics[width=100]{maven.png}
 
-\small{http://apache.maven.org}
+\small{http://maven.apache.org}
 
 ** Modularization
 :PROPERTIES:
@@ -160,6 +166,11 @@
     :BEAMER_col: 0.5
     :END:
 
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-jenkins.png
+:END:
 * Jenkins
 
 ** 
@@ -303,6 +314,11 @@ http://jenkins-ci.org
 - Otherwise, it triggers an infinite loop of downstream jobs.
 
 
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-docker.png
+:END:
 * Docker
 
 ** 
@@ -401,7 +417,33 @@ https://phusion.github.io/baseimage-docker/
 - Enhanced with in-house bash scripting framework: dry-wit.
 - Allows placeholders in Dockerfiles.
 
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-shipyard.png
+:END:
 * Shipyard
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: shipyard-citadel-bg.png
+:END:
+
+*** Citadel 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: 
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``Citadel is a toolkit for scheduling containers on a Docker cluster.''}
+
+*** Citadel 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{citadel-logo.png}
+
+\small{http://citadeltoolkit.org}
 
 ** Shipyard
 :PROPERTIES:
@@ -428,25 +470,17 @@ https://phusion.github.io/baseimage-docker/
 
 ** 
 :PROPERTIES:
-:BEAMER_BACKGROUND: shipyard-citadel-bg.png
+:BEAMER_BACKGROUND: shipyard-dashboard.png
 :END:
-
-*** Citadel 						      :BMCOL:B_block:
-    :PROPERTIES:
-    :BEAMER_env: 
-    :BEAMER_col: 0.6
-    :END:
-
-\textit{``Citadel is a toolkit for scheduling containers on a Docker cluster.''}
-
-*** Shipyard 					      :BMCOL:B_ignoreheading:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-\includegraphics[width=100]{citadel-logo.png}
-
-\small{http://citadeltoolkit.org}
-
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: shipyard-containers.png
+:END:
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-puppet.png
+:END:
 * Puppet 
 
 ** 
@@ -512,7 +546,7 @@ https://phusion.github.io/baseimage-docker/
     :BEAMER_col: 0.5
     :END:
 
-- Containers are staless.
+- Containers are stateless.
 - Containers launch fast.
 
 *** Cons 					      :BMCOL:B_block:
@@ -522,7 +556,7 @@ https://phusion.github.io/baseimage-docker/
     :END:
 
 - Containers need to be prepared to read their configuration from plain files.
-- The command for launching containers depends on Puppet configuration for that host.
+- The command for launching containers depends on the Puppet configuration for that host.
 - Puppet infrastructure required in production. 
  
 ** Puppet to build data-container images
@@ -538,7 +572,7 @@ https://phusion.github.io/baseimage-docker/
 
 - Puppet sets up the configuration for environment-aware images.
 - No Puppet needed in production: just links to data containers.
-- Launching containers do not depend on the host.
+- Launching containers does not depend on the host.
 
 *** Cons 					      :BMCOL:B_block:
     :PROPERTIES:
@@ -578,8 +612,12 @@ https://phusion.github.io/baseimage-docker/
 - Puppet infrastructure needed in production.
 - SSL certificate magic takes place on data containers.
 
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-mcollective.png
+:END:
 * MCollective
-
 ** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: mcollective-definition-bg.png
