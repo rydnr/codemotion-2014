@@ -559,7 +559,7 @@ https://phusion.github.io/baseimage-docker/
 - The command for launching containers depends on the Puppet configuration for that host.
 - Puppet infrastructure required in production. 
  
-** Puppet to build data-container images
+# ** Puppet to build data-container images
 :PROPERTIES:
 :BEAMER_BACKGROUND: puppet-to-build-data-container-images-bg.png
 :END:
@@ -713,6 +713,10 @@ https://phusion.github.io/baseimage-docker/
 :END:
 
 * Next steps
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-complete.png
+:END:
 ** Now what?
 :PROPERTIES:
 :BEAMER_BACKGROUND: now-what-bg.png
