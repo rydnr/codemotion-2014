@@ -1,4 +1,4 @@
-% Created 2014-11-20 Thu 06:42
+% Created 2014-11-21 Fri 19:06
 \documentclass[presentation,c]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -852,27 +852,6 @@
 \item Containers need to be prepared to read their configuration from plain files.
 \item The command for launching containers depends on the Puppet configuration for that host.
 \item Puppet infrastructure required in production.
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{block}{Pros}
-
-\begin{itemize}
-\item Puppet sets up the configuration for environment-aware images.
-\item No Puppet needed in production: just links to data containers.
-\item Launching containers does not depend on the host.
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.5\textwidth}
-\begin{block}{Cons}
-
-\begin{itemize}
-\item SSL certificate magic takes place on intermediate Docker images.
-\item A change in Puppet requires rebuilding the images, replacing the data-containers, and probably the application containers as well.
 \end{itemize}
 \end{block}
 \end{column}

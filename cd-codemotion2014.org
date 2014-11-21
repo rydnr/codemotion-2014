@@ -560,28 +560,28 @@ https://phusion.github.io/baseimage-docker/
 - Puppet infrastructure required in production. 
  
 # ** Puppet to build data-container images
-:PROPERTIES:
-:BEAMER_BACKGROUND: puppet-to-build-data-container-images-bg.png
-:END:
+# :PROPERTIES:
+# :BEAMER_BACKGROUND: puppet-to-build-data-container-images-bg.png
+# :END:
  
-*** Pros 						      :BMCOL:B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :BEAMER_col: 0.5
-    :END:
+# *** Pros 						      :BMCOL:B_block:
+#    :PROPERTIES:
+#    :BEAMER_env: block
+#    :BEAMER_col: 0.5
+#    :END:
 
-- Puppet sets up the configuration for environment-aware images.
-- No Puppet needed in production: just links to data containers.
-- Launching containers does not depend on the host.
+# - Puppet sets up the configuration for environment-aware images.
+# - No Puppet needed in production: just links to data containers.
+# - Launching containers does not depend on the host.
 
-*** Cons 					      :BMCOL:B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :BEAMER_col: 0.5
-    :END:
+# *** Cons 					      :BMCOL:B_block:
+#    :PROPERTIES:
+#    :BEAMER_env: block
+#    :BEAMER_col: 0.5
+#    :END:
 
-- SSL certificate magic takes place on intermediate Docker images.
-- A change in Puppet requires rebuilding the images, replacing the data-containers, and probably the application containers as well.
+# - SSL certificate magic takes place on intermediate Docker images.
+# - A change in Puppet requires rebuilding the images, replacing the data-containers, and probably the application containers as well.
 
 ** Puppet to manage data-container images
 :PROPERTIES:
