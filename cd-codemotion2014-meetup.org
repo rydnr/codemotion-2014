@@ -1,0 +1,748 @@
+#+TITLE: 
+#+DESCRIPTION: Continuous Delivery with Maven, Jenkins, Docker, Puppet, Shipyard and MCollective
+#+EMAIL: codemotion@acm-sl.org
+#+DATE: 2015-06-08
+#+LANGUAJE: en
+#+KEYWORDS: continuous-delivery, maven, jenkins, docker, puppet, shipyard, mcollective
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME:
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation,c]
+#+BEAMER_THEME: codemotion-madrid2014
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt) %4BEAMER_BLOCK(c)
+# % +LATEX: \usepackage{multimedia}
+#+LATEX: \title[Continuous Delivery]{}
+#+LATEX: \author[Jose San Leandro]{}
+#+LATEX: \addtobeamertemplate{block begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}
+#+LATEX: \addtobeamertemplate{block alerted begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}
+#+LATEX: \addtobeamertemplate{block example begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}     
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: frontpage.png
+:END:
+
+* Introduction
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: what-is-this-all-about-bg.png
+:END:
+
+*** What is this all about? 					    :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+- A brief introduction to Continuous Delivery.
+- How each tool fits in the big picture.
+- The approach I propose, without the pain.
+- Help to get you started on your own.
+- Advance towards Continuous Deployment.
+
+* Continuous Delivery
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: cd-book-bg.png
+:END:
+
+*** 						      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+# \includegraphics[height=190px]{book.jpg}
+
+*** Continuous Delivery - Jez Humble and David Farley	      :B_block:BMCOL:  
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+    \textit{``Encouraging greater collaboration between everyone involved in software delivery in order to release valuable software faster and more reliably.''}
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: continuous-delivery-pipeline-bg.png
+:END:
+
+
+** Automation
+:PROPERTIES:
+:BEAMER_BACKGROUND: cd-automation-bg.png
+:END:
+
+*** Bots welcome 						    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_opt: c
+    :END:
+
+- Speed up the release of new features.
+- Special focus on risk: automate everything!
+- Advance towards Continuous Deployment.
+- No need for code freeze.
+- Automated tagging.
+
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-maven.png
+:END:
+
+
+* Maven
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: maven-definition-bg.png
+:END:
+
+*** Maven quote 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``Apache Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information.''}
+
+*** Maven logo 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{maven.png}
+
+\small{http://maven.apache.org}
+
+** Modularization
+:PROPERTIES:
+:BEAMER_BACKGROUND: maven-graph-bg.png
+:END:
+
+*** Convention 						      :B_block:
+
+- All logic is isolated in its own module.
+- No multi-module projects, unless for WARs.
+- All modules inherit from a common, logic-less module: the parent POM.
+
+** Parent POM
+:PROPERTIES:
+:BEAMER_BACKGROUND: maven-graph-bg.png
+:END:
+
+*** Our Parent POM is useful as long as... 			    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Declares all dependencies in one place.
+- Ensures all modules use the same versions of the dependencies.
+- Defines common configurations for maven plugins.
+- Simplifies child poms.
+- Uses Maven properties to specify the versions of in-house modules.
+
+
+** Versioning
+:PROPERTIES:
+:BEAMER_BACKGROUND: maven-versioning-bg.png
+:END:
+
+*** Versions are unique and time-ordered 		      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- All in-house modules, share the same version: latest-SNAPSHOT.
+- All local environments get always up-to-date code.
+- Versions are resolved when generating releases.
+
+*** version 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.5
+    :END:
+
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-jenkins.png
+:END:
+* Jenkins
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-definition-bg.png
+:END:
+
+*** Jenkins 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``An extendable open source continuous integration server.''}
+
+*** Jenkins logo                                      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{jenkins.png}
+
+http://jenkins-ci.org
+
+** \textit{get-new-version} job
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-1-bg.png
+:END:
+
+*** Generates unique version numbers
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Helper job to automate the tagging and packaging process.
+- Checks out parent-pom code.
+- Parameterized job with a single parameter: the name of the module triggering the release.
+- Should have higher priority to avoid slot starvation and deadlocks in Jenkins.
+- Expects parent-pom to contain two properties: version.major and version.minor.
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-1b-bg.png
+:END:
+
+*** 						      :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+** \textit{get-new-version} job (2)
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-2-bg.png
+:END:
+
+*** One \textbf{job} to rule them all
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- When a commit is pushed to the remote repository, Jenkins launches the associated job.
+- The job is a Maven job, which runs \texttt{mvn deploy}.
+- If it succeeds, calls \texttt{get-new-version} with its own name as parameter.
+
+** \textit{get-new-version} job (3)
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-3-bg.png
+:END:
+
+*** maven-versions-plugin magic
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Parses the parent pom and defines a new version using a convention: $V = major.minor.BUILD\_NUMBER$ (provided by Jenkins).
+- Using \textbf{maven-versions-plugin}:
+  * Points itself to new version $V$.
+  * Uses the latest released versions for all modules.
+  * Ensures the version for the triggering module becomes $V$.
+- Builds a release the Maven way, with \textbf{maven-release-plugin}.
+- Publishes the new pom, with references to the latest released versions of each module.
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-3b-bg.png
+:END:
+
+*** 						      :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+
+** Releasing the child module
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-4-bg.png
+:END:
+
+*** Finally
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- The trigger module, using \textbf{maven-versions-plugin} again, updates its own pom to point to the newly released parent pom.
+- Accordingly, uses \textbf{maven-release-plugin} to build all required artifacts and tag the new version: $V$.
+- For each commit, (at least) two artifacts are generated: parent-pom-$V$ and module-$V$.
+
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-4b-bg.png
+:END:
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-4c-bg.png
+:END:
+
+*** 						      :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :BEAMER_col: 0.6
+    :END:
+
+
+
+** \textit{get-new-version} job fix
+:PROPERTIES:
+:BEAMER_BACKGROUND: jenkins-get-new-version-5-bg.png
+:END:
+
+*** Maven Embedded is too embedded 				    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Maven jobs in Jenkins run Maven Embedded engine.
+- Maven annotates parent jobs as dependencies in the dependency graph.
+- For \textit{get-new-version} to work, it cannot be a Maven job: It has to call Maven from the command line.
+- Otherwise, it triggers an infinite loop of downstream jobs.
+
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-docker.png
+:END:
+
+* Docker
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-definition-bg.png
+:END:
+
+*** Docker 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+\textit{``An open platform for distributed applications for developers and sysadmins.''}
+
+*** Docker                                            :B_ignoreheading:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.5
+    :END:
+\includegraphics[width=100]{docker-whale-home-logo.png}
+
+http://www.docker.com
+
+** Docker
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-definition-2-bg.png
+:END:
+
+*** Docker 							    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+``The Docker Engine container comprises just the application and its dependencies. It runs as an isolated process in userspace on the host operating system, sharing the kernel with other containers. Thus, it enjoys the resource isolation and allocation benefits of VMs but is much more portable and efficient.''
+
+** Docker Concepts (1)
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-concepts-1-bg.png
+:END:
+
+*** Packaging applications
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- \textbf{Image}: Packaged application and dependencies. Ready to launch.
+- \textbf{Container}: An isolated (process, memory, network, etc.) environment, running an \textit{image}.
+- \textbf{Volume}: A folder within a container, accessible from the host. Can be directly mapped to a folder in the host.
+
+** Docker Concepts (2)
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-concepts-2-bg.png
+:END:
+
+*** Running applications 				    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- \textbf{Link}: Docker mechanism to help containers communicate with each other. It's defined as \texttt{--link container:alias}:
+  - \textit{container}: the name of the external, already running container,
+  - \textit{alias}: the name used locally in the new container, pointing to the external container. Docker adds it to /etc/hosts, and defines some environment properties.
+- \textbf{Exposed port}: Docker service can map host ports to internal ports, when the container starts.
+
+** phusion-baseimage
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-phusion-baseimage-bg.png
+:END:
+
+*** Cleaning things up 			    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- A minimal Ubuntu base image modified for Docker-friendliness.
+- Takes care of the problem of:
+  - Zombie processes,
+  - Logger daemon,
+  - Cron jobs.
+- Motivation explained in their website: ``Your Docker image might be broken without you knowing it''
+https://phusion.github.io/baseimage-docker/
+
+** Dockerfile templates
+:PROPERTIES:
+:BEAMER_BACKGROUND: docker-dockerfile-templates-bg.png
+:END:
+
+*** Variables in Dockerfiles 					    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Based on wking's approach and code for Gentoo-based images:
+ https://github.com/wking/dockerfile
+- Modified for phusion-baseimage.
+- Enhanced with in-house bash scripting framework: dry-wit.
+- Allows placeholders in Dockerfiles.
+
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-shipyard.png
+:END:
+* Shipyard
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: shipyard-citadel-bg.png
+:END:
+
+*** Citadel 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``Citadel is a toolkit for scheduling containers on a Docker cluster.''}
+
+*** Citadel 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{citadel-logo.png}
+
+\small{http://citadeltoolkit.org}
+
+** Shipyard
+:PROPERTIES:
+:BEAMER_BACKGROUND: shipyard-definition-bg.png
+:END:
+
+*** \textit{Composable Docker Management} 		      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``Built on the Docker cluster management toolkit Citadel, Shipyard gives you the ability to manage Docker resources including containers, hosts and more.}
+
+\textit{Shipyard differs from other management applications in that it promotes composability. At the core, Shipyard only manages Docker (containers, etc). However, using "Extension Images" you can add functionality such as application routing and load balancing, centralized logging, deployment and more.''}
+
+*** Shipyard 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{shipyard-logo.png}
+
+\small{http://shipyard-project.com}
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: shipyard-dashboard.png
+:END:
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: shipyard-containers.png
+:END:
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-puppet.png
+:END:
+* Puppet 
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: puppet-definition-bg.png
+:END:
+
+*** Puppet 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``Puppet manages your servers: you describe machine configurations in an easy-to-read declarative language, and Puppet will bring your systems into the desired state and keep them there.''}
+
+*** Puppet 					      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+\includegraphics[width=100]{puppet-logo.png}
+
+\small{http://www.puppetlabs.com}
+
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: puppet-definition-1-bg.png
+:END:
+
+** Puppet on guests
+:PROPERTIES:
+:BEAMER_BACKGROUND: puppet-on-guests-bg.png
+:END:
+
+
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Images can be deployed anywhere.
+- It doesn't require a convention to map host volumes or data containers.
+- Containers can respond to changes propagated via Puppet.
+
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Containers take much longer to start.
+- Automatic generation, auto-sign, and auto-accept SSL certificates.
+- Puppet infrastructure required in production. 
+
+** Puppet on hosts 
+:PROPERTIES:
+:BEAMER_BACKGROUND: puppet-on-hosts-bg.png
+:END:
+ 
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Containers are stateless.
+- Containers launch fast.
+
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Containers need to be prepared to read their configuration from plain files.
+- The command for launching containers depends on the Puppet configuration for that host.
+- Puppet infrastructure required in production. 
+ 
+# ** Puppet to build data-container images
+# :PROPERTIES:
+# :BEAMER_BACKGROUND: puppet-to-build-data-container-images-bg.png
+# :END:
+ 
+# *** Pros 						      :BMCOL:B_block:
+#    :PROPERTIES:
+#    :BEAMER_env: block
+#    :BEAMER_col: 0.5
+#    :END:
+
+# - Puppet sets up the configuration for environment-aware images.
+# - No Puppet needed in production: just links to data containers.
+# - Launching containers does not depend on the host.
+
+# *** Cons 					      :BMCOL:B_block:
+#    :PROPERTIES:
+#    :BEAMER_env: block
+#    :BEAMER_col: 0.5
+#    :END:
+
+# - SSL certificate magic takes place on intermediate Docker images.
+# - A change in Puppet requires rebuilding the images, replacing the data-containers, and probably the application containers as well.
+
+** Puppet to manage data-container images
+:PROPERTIES:
+:BEAMER_BACKGROUND: puppet-to-manage-data-container-images-1-bg.png
+:END:
+
+** Environment isolated in data containers
+:PROPERTIES:
+:BEAMER_BACKGROUND: puppet-to-manage-data-container-images-1-bg.png
+:END:
+ 
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Data containers launch the Puppet agent: their configuration can evolve over time.
+- Puppet sets up the configuration depending on the environment.
+- Launching containers do not depend on the host.
+
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Puppet infrastructure needed in production.
+- SSL certificate magic takes place on data containers.
+
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-mcollective.png
+:END:
+* MCollective
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-definition-bg.png
+:END:
+
+*** MCollective 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``MCollective is a powerful orchestration framework.}
+
+\textit{Run actions on thousands of servers simultaneously, using existing plugins or writing your own.''}
+
+*** MCollective 				      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+\includegraphics[width=100]{mcollective-logo.png}
+
+\small{http://www.puppetlabs.com}
+
+
+** ssh in a loop (1)
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-in-a-loop-1-bg.png
+:END:
+ 
+*** Pros 						      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Simple and straightforward.
+- Fast enough up to a certain number of hosts.
+- Easy and cheap to adapt to perform different tasks.
+- Scriptable.
+
+** ssh in a loop (2)
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-in-a-loop-2-bg.png
+:END:
+
+*** Cons 					      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Scripts with hard-coded host names or IPs.
+- Requires way too much information about the production environment.
+- Cannot easily run remote commands which expect some kind of interaction.
+- When the number of host grows, the risk of overlook reported problems increases.
+- Requires dealing with account permissions, SSO, etc.
+
+** MCollective
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-bg.png
+:END:
+ 
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Scales with the number of hosts in production.
+- Extendable via plugins.
+- Doesn't require system accounts, SSO on production hosts.
+- Puppet module available for servers.
+
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- More complex architecture.
+- Requires middleware.
+- Scaling beyond certain size requires tuning.
+- Middleware should be fault-tolerant.
+- Misconfigured setups can generate excessive traffic.
+
+** Architecture
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-architecture-bg.png
+:END:
+
+** Middleware
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-middleware-bg.png
+:END:
+
+* Next steps
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-complete.png
+:END:
+** Now what?
+:PROPERTIES:
+:BEAMER_BACKGROUND: now-what-bg.png
+:END:
+
+*** First things first 						    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Clone my repos: http://github.com/rydnr/dockerfile and http://github.com/rydnr/dry-wit
+- Take http://github.com/rydnr/acmsl-jenkins-configs as a template for \textbf{get-new-version} job.
+- Build your custom Delivery Pipeline.
+- Make Jenkins generate Docker images and push them to a private index.
+
+** And then?
+:PROPERTIES:
+:BEAMER_BACKGROUND: now-what-bg.png
+:END:
+
+*** Customize and test 						    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Build mcollective-client and mcollective-server images.
+- Install shipyard and mcollective server agent in a test environment.
+- Launch docker containers from the mcollective client, via mcollective shell agent.
+- Try Interlock in the path to Continuous Deployment!
