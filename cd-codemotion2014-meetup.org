@@ -114,7 +114,7 @@
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
-\includegraphics[width=100]{maven.png}
+\includegraphics[width=100pt]{maven.png}
 
 \small{http://maven.apache.org}
 
@@ -129,23 +129,6 @@
 - No multi-module projects, unless for WARs.
 - All modules inherit from a common, logic-less module: the parent POM.
 
-** Parent POM
-:PROPERTIES:
-:BEAMER_BACKGROUND: maven-graph-bg.png
-:END:
-
-*** Our Parent POM is useful as long as... 			    :B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :END:
-
-- Declares all dependencies in one place.
-- Ensures all modules use the same versions of the dependencies.
-- Defines common configurations for maven plugins.
-- Simplifies child poms.
-- Uses Maven properties to specify the versions of in-house modules.
-
-
 ** Versioning
 :PROPERTIES:
 :BEAMER_BACKGROUND: maven-versioning-bg.png
@@ -157,9 +140,8 @@
     :BEAMER_col: 0.5
     :END:
 
-- All in-house modules, share the same version: latest-SNAPSHOT.
-- All local environments get always up-to-date code.
-- Versions are resolved when generating releases.
+- All in-house modules share the same version (\texttt{latest-SNAPSHOT}).
+- Actual versions are resolved when generating releases.
 
 *** version 					      :BMCOL:B_ignoreheading:
     :PROPERTIES:
@@ -190,40 +172,20 @@
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
-\includegraphics[width=100]{jenkins.png}
+\includegraphics[width=100pt]{jenkins.png}
 
 http://jenkins-ci.org
 
-** \textit{get-new-version} job
-:PROPERTIES:
-:BEAMER_BACKGROUND: jenkins-get-new-version-1-bg.png
-:END:
-
-*** Generates unique version numbers
-    :PROPERTIES:
-    :BEAMER_env: block
-    :END:
-
-- Helper job to automate the tagging and packaging process.
-- Checks out parent-pom code.
-- Parameterized job with a single parameter: the name of the module triggering the release.
-- Should have higher priority to avoid slot starvation and deadlocks in Jenkins.
-- Expects parent-pom to contain two properties: version.major and version.minor.
 
 ** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-1b-bg.png
 :END:
 
-*** 						      :B_ignoreheading:BMCOL:
-    :PROPERTIES:
-    :BEAMER_env: quotation
-    :BEAMER_col: 0.6
-    :END:
 
-** \textit{get-new-version} job (2)
+** \textit{get-new-version} job
 :PROPERTIES:
-:BEAMER_BACKGROUND: jenkins-get-new-version-2-bg.png
+:BEAMER_BACKGROUND: jenkins-get-new-version-1-bg.png
 :END:
 
 *** One \textbf{job} to rule them all
@@ -231,58 +193,13 @@ http://jenkins-ci.org
     :BEAMER_env: block
     :END:
 
-- When a commit is pushed to the remote repository, Jenkins launches the associated job.
-- The job is a Maven job, which runs \texttt{mvn deploy}.
-- If it succeeds, calls \texttt{get-new-version} with its own name as parameter.
-
-** \textit{get-new-version} job (3)
-:PROPERTIES:
-:BEAMER_BACKGROUND: jenkins-get-new-version-3-bg.png
-:END:
-
-*** maven-versions-plugin magic
-    :PROPERTIES:
-    :BEAMER_env: block
-    :END:
-
-- Parses the parent pom and defines a new version using a convention: $V = major.minor.BUILD\_NUMBER$ (provided by Jenkins).
-- Using \textbf{maven-versions-plugin}:
-  * Points itself to new version $V$.
-  * Uses the latest released versions for all modules.
-  * Ensures the version for the triggering module becomes $V$.
-- Builds a release the Maven way, with \textbf{maven-release-plugin}.
-- Publishes the new pom, with references to the latest released versions of each module.
+- Helper job to automate the tagging and packaging process.
+- Checks out parent-pom code.
+- Gets launched for every change, and generates a new tagged release.
 
 ** 
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-3b-bg.png
-:END:
-
-*** 						      :B_ignoreheading:BMCOL:
-    :PROPERTIES:
-    :BEAMER_env: quotation
-    :BEAMER_col: 0.6
-    :END:
-
-
-** Releasing the child module
-:PROPERTIES:
-:BEAMER_BACKGROUND: jenkins-get-new-version-4-bg.png
-:END:
-
-*** Finally
-    :PROPERTIES:
-    :BEAMER_env: block
-    :END:
-
-- The trigger module, using \textbf{maven-versions-plugin} again, updates its own pom to point to the newly released parent pom.
-- Accordingly, uses \textbf{maven-release-plugin} to build all required artifacts and tag the new version: $V$.
-- For each commit, (at least) two artifacts are generated: parent-pom-$V$ and module-$V$.
-
-
-** 
-:PROPERTIES:
-:BEAMER_BACKGROUND: jenkins-get-new-version-4b-bg.png
 :END:
 
 ** 
@@ -298,7 +215,7 @@ http://jenkins-ci.org
 
 
 
-** \textit{get-new-version} job fix
+** \textit{get-new-version} job
 :PROPERTIES:
 :BEAMER_BACKGROUND: jenkins-get-new-version-5-bg.png
 :END:
@@ -310,7 +227,7 @@ http://jenkins-ci.org
 
 - Maven jobs in Jenkins run Maven Embedded engine.
 - Maven annotates parent jobs as dependencies in the dependency graph.
-- For \textit{get-new-version} to work, it cannot be a Maven job: It has to call Maven from the command line.
+- The new \textit{release} job cannot be a Maven job.
 - Otherwise, it triggers an infinite loop of downstream jobs.
 
 * 
@@ -338,7 +255,7 @@ http://jenkins-ci.org
     :PROPERTIES:
     :BEAMER_col: 0.5
     :END:
-\includegraphics[width=100]{docker-whale-home-logo.png}
+\includegraphics[width=100pt]{docker-whale-home-logo.png}
 
 http://www.docker.com
 
@@ -417,6 +334,109 @@ https://phusion.github.io/baseimage-docker/
 - Enhanced with in-house bash scripting framework: dry-wit.
 - Allows placeholders in Dockerfiles.
 
+
+* 
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: flow-mcollective.png
+:END:
+* MCollective
+** 
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-definition-bg.png
+:END:
+
+*** MCollective 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.6
+    :END:
+
+\textit{``MCollective is a powerful orchestration framework.}
+
+\textit{Run actions on thousands of servers simultaneously, using existing plugins or writing your own.''}
+
+*** MCollective 				      :BMCOL:B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+\includegraphics[width=100]{mcollective-logo.png}
+
+\small{http://www.puppetlabs.com}
+
+
+** ssh in a loop (1)
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-in-a-loop-1-bg.png
+:END:
+ 
+*** Pros 						      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Simple and straightforward.
+- Fast enough up to a certain number of hosts.
+- Easy and cheap to adapt to perform different tasks.
+- Scriptable.
+
+** ssh in a loop (2)
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-in-a-loop-2-bg.png
+:END:
+
+*** Cons 					      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+
+- Scripts with hard-coded host names or IPs.
+- Requires way too much information about the production environment.
+- Cannot easily run remote commands which expect some kind of interaction.
+- When the number of host grows, the risk of overlook reported problems increases.
+- Requires dealing with account permissions, SSO, etc.
+
+** MCollective
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-bg.png
+:END:
+ 
+*** Pros 						      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- Scales with the number of hosts in production.
+- Extendable via plugins.
+- Doesn't require system accounts, SSO on production hosts.
+- Puppet module available for servers.
+
+*** Cons 					      :BMCOL:B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.5
+    :END:
+
+- More complex architecture.
+- Requires middleware.
+- Scaling beyond certain size requires tuning.
+- Middleware should be fault-tolerant.
+- Misconfigured setups can generate excessive traffic.
+
+** Architecture
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-architecture-bg.png
+:END:
+
+** Middleware
+:PROPERTIES:
+:BEAMER_BACKGROUND: mcollective-middleware-bg.png
+:END:
+
+
+
 * 
 ** 
 :PROPERTIES:
@@ -456,9 +476,9 @@ https://phusion.github.io/baseimage-docker/
     :BEAMER_col: 0.6
     :END:
 
-\textit{``Built on the Docker cluster management toolkit Citadel, Shipyard gives you the ability to manage Docker resources including containers, hosts and more.}
+\textit{``Built on the Docker cluster management toolkit Citadel, Shipyard gives you the ability to manage Docker resources [..]''}
 
-\textit{Shipyard differs from other management applications in that it promotes composability. At the core, Shipyard only manages Docker (containers, etc). However, using "Extension Images" you can add functionality such as application routing and load balancing, centralized logging, deployment and more.''}
+Plus: application routing and load balancing, centralized logging, deployment, etc.
 
 *** Shipyard 					      :BMCOL:B_ignoreheading:
     :PROPERTIES:
@@ -476,6 +496,7 @@ https://phusion.github.io/baseimage-docker/
 :PROPERTIES:
 :BEAMER_BACKGROUND: shipyard-containers.png
 :END:
+
 * 
 ** 
 :PROPERTIES:
@@ -611,106 +632,6 @@ https://phusion.github.io/baseimage-docker/
 
 - Puppet infrastructure needed in production.
 - SSL certificate magic takes place on data containers.
-
-* 
-** 
-:PROPERTIES:
-:BEAMER_BACKGROUND: flow-mcollective.png
-:END:
-* MCollective
-** 
-:PROPERTIES:
-:BEAMER_BACKGROUND: mcollective-definition-bg.png
-:END:
-
-*** MCollective 					      :BMCOL:B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :BEAMER_col: 0.6
-    :END:
-
-\textit{``MCollective is a powerful orchestration framework.}
-
-\textit{Run actions on thousands of servers simultaneously, using existing plugins or writing your own.''}
-
-*** MCollective 				      :BMCOL:B_ignoreheading:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-
-\includegraphics[width=100]{mcollective-logo.png}
-
-\small{http://www.puppetlabs.com}
-
-
-** ssh in a loop (1)
-:PROPERTIES:
-:BEAMER_BACKGROUND: mcollective-in-a-loop-1-bg.png
-:END:
- 
-*** Pros 						      :B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :END:
-
-- Simple and straightforward.
-- Fast enough up to a certain number of hosts.
-- Easy and cheap to adapt to perform different tasks.
-- Scriptable.
-
-** ssh in a loop (2)
-:PROPERTIES:
-:BEAMER_BACKGROUND: mcollective-in-a-loop-2-bg.png
-:END:
-
-*** Cons 					      :B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :END:
-
-- Scripts with hard-coded host names or IPs.
-- Requires way too much information about the production environment.
-- Cannot easily run remote commands which expect some kind of interaction.
-- When the number of host grows, the risk of overlook reported problems increases.
-- Requires dealing with account permissions, SSO, etc.
-
-** MCollective
-:PROPERTIES:
-:BEAMER_BACKGROUND: mcollective-bg.png
-:END:
- 
-*** Pros 						      :BMCOL:B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :BEAMER_col: 0.5
-    :END:
-
-- Scales with the number of hosts in production.
-- Extendable via plugins.
-- Doesn't require system accounts, SSO on production hosts.
-- Puppet module available for servers.
-
-*** Cons 					      :BMCOL:B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :BEAMER_col: 0.5
-    :END:
-
-- More complex architecture.
-- Requires middleware.
-- Scaling beyond certain size requires tuning.
-- Middleware should be fault-tolerant.
-- Misconfigured setups can generate excessive traffic.
-
-** Architecture
-:PROPERTIES:
-:BEAMER_BACKGROUND: mcollective-architecture-bg.png
-:END:
-
-** Middleware
-:PROPERTIES:
-:BEAMER_BACKGROUND: mcollective-middleware-bg.png
-:END:
 
 * Next steps
 ** 
